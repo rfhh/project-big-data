@@ -36,7 +36,8 @@ The following commands should take ``hue.csv`` as input.
    write a command that shows the unique values of adherence_importance.
 
 6) (5 points)
-   write a command that shows the number of data points (lines) per user id.
+   write a command that shows the number of data points (lines) for each
+   user id.
 
 7) (10 points)
    write a command that shows all unique strings. A string
@@ -45,7 +46,8 @@ The following commands should take ``hue.csv`` as input.
    but not 15_mei or 2015_risetime.
 
 8) (10 points)
-   write a command that shows the number of lamp_change events per day.
+   write a command that shows the number of lamp_change events for each
+   relevant day.
 
 
 Python exercises
