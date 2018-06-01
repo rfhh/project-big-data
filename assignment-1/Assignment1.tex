@@ -1,17 +1,17 @@
-\documentclass[11pt]{article}
+\documentclass[a4paper]{report}
 
 \usepackage{amsthm}
 \usepackage{anysize}
 \usepackage[english]{babel}
 \usepackage{comment}
-\usepackage{courier}
+% \usepackage{courier}
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
 \usepackage{mathptmx}
 \usepackage{paralist}
 
-\usepackage{fixltx2e} % LaTeX patches, \textsubscript
-\usepackage{cmap} % fix search and cut-and-paste in Acrobat
-\usepackage{ifthen}
+% \usepackage{fixltx2e} % LaTeX patches, \textsubscript
+% \usepackage{cmap} % fix search and cut-and-paste in Acrobat
+% \usepackage{ifthen}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{paralist}
@@ -38,8 +38,20 @@
 
 The files \texttt{hue\_upload.csv} and \texttt{hue\_upload2.csv} are two files in the same format, that have been collected over different time periods. Each line contains the line number, the user id, the event string, and a data field, separated by semicolons (;) and enclosed by double quotes (\textquotedbl{}).
 
-\section*{Command line exercises}
+\section*{Command-line exercises}
 \label{command-line-exercises}
+
+Most *nix utilities provide information on their options and behaviour when
+they are passed the command-line option \texttt{-{}-help}. Besides, each
+command comes with a manual (man) page, invoked by typing ``\texttt{man
+<utility>}'' for
+*nix or Mac. For Windows, the man pages are best found on the web, e.g.
+at \url{https://man.cx}.
+
+Regular expressions come in different flavours. We advise to use the flavour
+known as 'extended regular expressions'. \texttt{grep -E} and \texttt{sed -r}
+are options that select this flavour. Python and gawk support extended regular
+expressions by default.
 
 \begin{exercise}
 	(2 points) Write a command that combines \texttt{hue\_upload.csv} and \texttt{hue\_upload2.csv} into a single file \texttt{hue\_combined.csv}.
@@ -123,7 +135,7 @@ constructs and library APIs. Use this for all your Python work!
 
 	\noindent which contains, e.g., the information that the distance from point 0 to point 1 is 1, while the distance from point 1 to point 0 is 2. A dash means that no direct connection exists (which can be implemented as float('inf'), so that the connection will not get used). Implement \href{https://en.wikipedia.org/wiki/Dijkstra's_algorithm\#Pseudocode}{Dijkstra’s Algorithm} to find the shortest path from point 0 to the last point (2 in this case). You may not use a package that features Dijkstra’s Algorithm. For the matrix shown above, the shortest distance is 5.
 
-	Your implementation should print the length of the shortest path and the shortest path(s) itself to the screen.
+	Your implementation should print the length of the shortest path and the shortest path itself to the screen.
 \end{exercise}
 
 \begin{exercise}
@@ -172,7 +184,9 @@ constructs and library APIs. Use this for all your Python work!
 Another 10 points are awarded for the cleanliness of your code and the use of idiomatic Python (such as list comprehensions, sets, dicts,
 etc.). You can obtain 100 points in total.
 
-The assignment should be done in groups of two students, and must be handed in via Canvas on June 11 by 11 am. Your solution should use the provided template (\texttt{solution.py}), which is the (only) file that your should submit. It is \emph{crucial} that you do not alter the names and arguments of the existing functions, although adding additional functions is recommended. The template contains the file \texttt{run\_solution.py} that can be used to verify that your \texttt{solution.py} is in the correct format; \texttt{run\_solution.py} can be run from the command line via \texttt{python run\_solution.py} (Windows) or \texttt{python3.6 run\_solution.py} (Mac), or from Spyder.
+The assignment should be done in groups of two students, and must be handed in
+via Canvas on June 8 by 23:59h.
+Your solution should use the provided template (\texttt{solution.py}), which is the (only) file that you should submit. It is \emph{crucial} that you do not alter the names and arguments of the existing functions, although adding additional functions is recommended. The template contains the file \texttt{run\_solution.py} that can be used to verify that your \texttt{solution.py} is in the correct format; \texttt{run\_solution.py} can be run from the command line via \texttt{python run\_solution.py} (Windows) or \texttt{python3.6 run\_solution.py} (Mac), or from Spyder.
 
 Each group should hand in only one solution. If both students submit a solution, only the first submission will be graded. Feedback will be provided to the e-mail addresses you provide in \texttt{solution.py}.
 
@@ -180,7 +194,9 @@ Each group should hand in only one solution. If both students submit a solution,
 
 \begin{itemize}
 	\setlength\itemsep{1mm}
-	\item If your shell command does not run, check whether you use \textquotedbl{} (in stead of ”) or - (in stead of –). These are common copy/paste errors.
+	\item If your shell command does not run, check whether you
+	accidentally use ” (curly quote) (in stead of \textquotedbl{}) or –
+	(endash) (in stead of -). These are common copy/paste errors.
 	\item We will run your solutions with different (possibly longer or more complex) input files than provided in the template.
 	\item Use the Python \href{https://docs.python.org/3/}{reference} on the web!
 \end{itemize}
