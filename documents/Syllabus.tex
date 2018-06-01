@@ -20,7 +20,9 @@
 	{\large Syllabus}
 \end{center}
 
-\hrulefill
+\noindent\hrulefill
+
+\section*{Organizational}
 
 \paragraph{Course information}
 This course aims to integrate various aspects involved with data science and to teach the fundamentals of working with big data (including an
@@ -77,7 +79,7 @@ All relevant dates are summarized in the table below.
 \paragraph{Attendance}
 Attendance is only mandatory for the presentations (28th of June, 09:00 - 12:45).
 
-\newpage
+% \newpage
 
 \paragraph{Grading}
 The tasks for the course (including weights) are summarized in the table below.
@@ -114,14 +116,14 @@ The assignments and grading schemes have been designed for groups of two. Collab
 You will use Python, MongoDB and command line tools. Installation instructions for Windows and Mac OS X are included in this syllabus.
 
 \subsection*{Windows}
-\subsubsection*{Command line tools}
+\paragraph{Command line tools}
 The command line on Windows is traditionally not well developed (we will
 ignore PowerShell in this course). Fortunately, many tools from *nix
 have been ported to Windows. One of these ports is \mbox{unxutils}
 (\url{https://sourceforge.net/projects/unxutils/}). After downloading
 and opening the zip file, you find all useful tools in
 \textit{usr{\textbackslash}local{\textbackslash}wbin}. Copy the files,
-then paste them in a new folder \textit{C:{\textbackslash}Program~Files{\textbackslash}unxutils}.
+then paste them into a new folder \textit{C:{\textbackslash}Program~Files{\textbackslash}unxutils}.
 
 \noindent\begin{center}\includegraphics[width=5.552in,height=4.098in]{Syllabus-img1.png}\end{center}
 
@@ -149,17 +151,22 @@ Don{\textquoteright}t forget to enter sort2 instead of sort whenever
 you want to run sort.
 
 To verify if the install is successful, open the command prompt (hit the
-winkey, type \texttt\small{cmd} and hit return) and type
+winkey, type \small\texttt{cmd} and hit return) and type
 {\textquoteleft}grep{\textquoteright}. If it shows
 {\textquotedblleft}Usage: grep [OPTION]{\textquotedblright} the install
 is complete. If it says
 {\textquotedblleft}{\textquoteright}grep{\textquoteright} is not
 recognized{\textquotedblright} the install is incomplete. Enter the
-command \texttt\small{path} to see if the path is correct.
+command \small\texttt{path} to see if the path is correct.
 
-----------> the section on cmd utils documentation
+\paragraph{Documentation for command line utilities}
 
-\subsubsection*{Python}
+Most commands give some sensible documentation when they are invoked with a
+command-line argument \small\texttt{--help}. The standard way to provide
+documentation for these utilities is in so-called \small\texttt{man} pages.
+These can be also found on the web, e.g.\ at \url{https://mancx}.
+
+\paragraph{Python}
 Any Python 3 distribution with pandas, numpy, pymongo, re, sklearn and
 matplotlib will do. We recommend WinPython
 (\url{https://winpython.github.io/}). Select the latest release and the
@@ -181,9 +188,9 @@ unexpected behavior.
 
 Now open the folder WinPython was installed to and run
 \textit{Spyder.exe}. If you need to install extra modules, run
-\textit{WinPython Command Prompt.exe} and use \texttt\small{pip install}.
+\textit{WinPython Command Prompt.exe} and use \small\texttt{pip install}.
 
-\subsubsection*{MongoDB}
+\paragraph{MongoDB}
 MongoDB can be downloaded from
 \url{https://www.mongodb.com/download-center}; use the pane labeled
 "Community Center". The version that is
@@ -191,7 +198,7 @@ selected runs on both the 32 bit and the 64 bit version of Windows 7
 and above. Run the installation wizard. Installation under Windows-10 may be
 a bit problematic. If you run into the error "setup wizard ended
 prematurely", uncheck the [Install MongoDB Compass] checkbox, somewhere in
-the setup process. Then create the folder
+the setup process. After successful installation, create the folder
 \textit{c:{\textbackslash}data{\textbackslash}db}. Then go to
 \textit{C:{\textbackslash}Program
 Files{\textbackslash}MongoDB{\textbackslash}Server{\textbackslash}3.4{\textbackslash}bin}
@@ -205,7 +212,8 @@ If the window closes directly by itself, run \textit{mongod.exe} from
 the command line to see an error message.
 
 \subsection*{Mac OS X}
-\subsubsection*{Command line tools}
+
+\paragraph{Command line tools}
 Mac OS X already has all necessary tools, except gawk. You can open the
 terminal by going into Spotlight (with command ([2318?]) space, or by
 clicking on the magnifying glass in the top right corner of your
@@ -221,7 +229,7 @@ Terminal:
 Once homebrew is successfully installed on your system, install gawk via
 the command \small\texttt{brew install gawk}.
 
-\subsubsection*{Python}
+\paragraph{Python}
 Download the .pkg installer for Python 3.6.1 here:
 
 \url{https://www.python.org/ftp/python/3.6.1/python-3.6.1-macosx10.6.pkg}
@@ -229,41 +237,45 @@ Download the .pkg installer for Python 3.6.1 here:
 Run the installer by executing the .pkg, and install Python by following
 the instructions.
 
-\subsubsection*{MongoDB}
+\paragraph{MongoDB}
 MongoDB can be downloaded from
 \url{https://www.mongodb.com/download-center}. Click OSX, download and
 extract the .tgz file to any folder. In the terminal, go to that folder
-and create a subfolder \texttt\small{data/db} with the command \texttt\small{mkdir
+and create a subfolder \small\texttt{data/db} with the command \small\texttt{mkdir
 -p data/dp} to complete the install. Each time you{\textquoteright}d
 like to use MongoDB, open the terminal, go to the right folder, and run
-\texttt\small{bin/mongod -{}-dpath data/db}.
+\small\texttt{bin/mongod -{}-dpath data/db}.
 
-Alternatively, MongoDB can be installed with the command \texttt\small{brew
+Alternatively, MongoDB can be installed with the command \small\texttt{brew
 install mongodb -{}-with-openssl. }Subsequently, create a mongodb data
-directory in your home directory with the command \texttt\small{mkdir -p
-\~{}/data/dp }. Running the command \texttt\small{bin/mongod -{}-dpath
-\~{}/data/db} should show you the following message.
-\includegraphics[width=6.4953in,height=0.1783in]{Syllabus-img6.png} 
+directory in your home directory with the command \small\texttt{mkdir -p
+\~{}/data/dp }. Running the command \small\texttt{bin/mongod -{}-dpath
+\~{}/data/db} should show you the following message:
 
-\subsubsection*{Spyder editor}
-Python comes with a package manager called \texttt\small{pip} (sometimes also
-called \texttt\small{pip-3.5 or pip-3.6; replace the following commands with
-the name that works on your system).} To install the Spyder editor,
+\noindent\includegraphics[width=6.4953in,height=0.1783in]{Syllabus-img6.png} 
+
+\paragraph{Spyder editor}
+Python comes with a package manager called \small\texttt{pip} (sometimes also
+called \small\texttt{pip-3.5} or \small\texttt{pip-3.6}; replace the following commands with
+the name that works on your system). To install the Spyder editor,
 type the following two commands into the Terminal: 
 
-\texttt\small{pip install PyQt5}
+\noindent\small\texttt{pip install PyQt5}
 \\
-\texttt\small{pip install spyder}
+\small\texttt{pip install spyder}
 
-\subsubsection*{Python packages}
-In a similar way, use \texttt\small{pip install
+\paragraph{Python packages}
+In a similar way, use \small\texttt{pip install
 {\textless}packagename{\textgreater} }to install the following
 packages: pandas, numpy, pymongo, re, sklearn and matplotlib 
 
 
 % \newpage
 
+\section*{Criteria for final report and presentation}
+
 \paragraph{Criteria for final report}
+
 \begin{enumerate}
 	\item Quality of written text (10\%)
 	\begin{compactitem}
