@@ -1,0 +1,183 @@
+\documentclass[a4paper]{report}
+
+\usepackage{anysize}
+\usepackage[english]{babel}
+\usepackage{comment}
+\usepackage{paralist}
+
+\marginsize{2.5cm}{2.5cm}{2cm}{2cm}
+
+\newcommand{\blankline}{\par\vspace{5mm}}
+\newcommand{\tab}{\hspace*{2em}}
+
+\begin{document}
+	
+\begin{center}
+	\textsc{\Large Project Big Data}
+	\blankline
+	{\large Syllabus}
+\end{center}
+
+\hrulefill
+
+\paragraph{Course information}
+This course aims to integrate various aspects involved with data science and to teach the fundamentals of working with big data (including an
+introduction to Hadoop). Topics include visualization of data; preparing data for processing (machine learning or data mining); storing unstructured data; and scaling techniques for working with big volumes of data. Python is used throughout this hands-on course.
+
+\paragraph{Staff}
+The organizers for this course are:
+\begin{itemize}
+	\setlength\itemsep{0mm}
+	\item Irving van Heuven van Staereling (\texttt{i.i.van.heuvenvanstaereling@vu.nl})
+	\item Rutger Hofman (\texttt{r.f.h.hofman@vu.nl})
+	\item Nanne Dieleman (\texttt{n.a.dieleman@vu.nl})
+\end{itemize}
+For questions that cannot be answered during the working group, contact \texttt{pbd-vu@gmail.com}, which sends an email to all instructors. Any of the instructors will try to reply as soon as possible.
+
+\paragraph{Format}
+The entire course is done in groups of two students. You should select your own partner. There is a one-time opportunity to switch partners after the first week.
+
+At the end of the fourth week each group is expected to give a 10 - 12 minute presentation. The presentations are grouped in slots of one hour each. All three groups that present in a slot should be present during the entire hour. Be prepared by arriving on time and having your presentation ready in pdf format on a usb-stick and online.
+
+As for the style of your slides, make sure they look professional, have good contrast, are readable from the back, and have the same style as your partner’s. Practice with your partner to ensure a smooth transition between you two and to stick to the time limit. After 10 minutes we will give a sign. Avoid hitting the 12 minute mark because we will terminate your presentation to give the audience the opportunity to ask questions.
+
+You are expected to be (or seem) interested in the presentations and discussions of fellow students. Asking insightful questions is encouraged, while being a distraction will negatively affect your grade.
+
+\paragraph{Literature}
+The powerpoint slides cover all materials for this course.
+
+\paragraph{Schedule}
+All relevant dates are summarized in the table below.
+
+\begin{table}[h!]
+	\begin{tabular}{| l | l | l | l | l | l |}
+		\hline
+		\textbf{Day}	&	\textbf{Date}	& \textbf{Time}	& \textbf{Type}			& \textbf{Location}	& \textbf{Instructors}	\\
+		\hline
+		Monday			&	04-06			& 11:00 - 12:45	& Lecture				& WN-C121			& Irving				\\
+		Tuesday			&	05-06			& 10:00 - 12:45	& Working group			& HG-06A33			& Irving, Nanne, Rutger	\\
+		Thursday		&	07-06			& 10:00 - 12:45	& Working group			& WN-C121			& Irving, Nanne, Rutger	\\
+		\hline
+		Monday			&	11-06			& 11:00 - 12:45	& Lecture				& WN-C121			& Irving				\\
+		Tuesday			&	12-06			& 10:00 - 12:45	& Working group			& HG-06A33			& Irving, Nanne, Rutger	\\
+		Thursday		&	14-06			& 10:00 - 12:45	& Working group			& WN-C121			& Irving, Nanne, Rutger	\\
+		\hline
+		Monday			&	18-06			& 11:00 - 12:45	& Lecture				& WN-C121			& Irving				\\
+		Tuesday			&	19-06			& 10:00 - 12:45	& Working group			& HG-06A33			& Irving, Rutger	\\
+		Thursday		&	21-06			& 10:00 - 12:45	& Working group			& WN-C121			& Irving, Rutger	\\
+		\hline
+		Tuesday			&	26-06			& 10:00 - 12:45	& Working group			& HG-02A33			& Irving, Rutger	\\
+		Thursday		&	28-06			& 09:00 - 12:45	& Presentations			& WN-S624/WN-S664	& Irving, Rutger	\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\paragraph{Attendance}
+Attendance is only mandatory for the presentations (28th of June, 09:00 - 12:45).
+
+\newpage
+
+\paragraph{Grading}
+The tasks for the course (including weights) are summarized in the table below.
+
+\begin{table}[h!]
+	\begin{tabular}{| l | l | l |}
+		\hline
+		\textbf{Assignment} & \textbf{Weight}	& \textbf{Deadline}					\\
+		\hline
+		Week 1				&	15\%			& Friday, June 8, 23:59				\\
+		\hline
+		Week 2				&	15\%			& Friday, June 15, 23:59			\\
+		\hline
+		Week 3				&	15\%			& Friday, June 22, 23:59			\\
+		\hline
+		Presentation		&	20\%			& Thursday, June 28, 09:00 - 12:45	\\
+		\hline
+		Report				&	35\%			& Friday, June 29, 23:59			\\
+		\hline
+	\end{tabular}
+\end{table}
+The criteria for the report and presentation are included in this syllabus. Grades for each part are given in the range 1—10, even for missing work. You pass if the weighted average is above 5.5. In principle, both group members get the same grade, except for the presentation.
+
+\paragraph{If you took this course in a previous year}
+If you took this course in a previous year and finished part of the assignments, you cannot do those parts with someone else this year. For those assignments you either have to work with the same partner as last year, or by yourself.
+If, in a previous year, you received a grade for the assignment of week 1, you either have to do this year’s command line assignment or this year’s complete assignment. If you only do the command line assignment, the grade will be weighted with your previous grade.
+If, in a previous year, you received a grade for any other assignment, report or presentation, you can keep that grade by not handing in a new solution or report or not giving a new presentation. If you choose to do this, please inform the course coordinator about your choice.
+If you were graded for any part in a previous year and hand in a new solution, only the last grade counts.
+
+\paragraph{Plagiarism}
+The assignments and grading schemes have been designed for groups of two. Collaborating with other groups is not permitted. Using the internet as a passive resource is allowed. That means that you can search for solutions and copy code, as long as you indicate which parts have been copied and from where. Asking questions online is not permitted. All your code will be scanned for plagiarism. Violations are always reported to the Board of Examiners and may result in disciplinary measures.
+
+\paragraph{Software}
+You will use Python, MongoDB and command line tools. Installation instructions for Windows and Mac OS X are included in this syllabus.
+
+% \newpage
+
+\paragraph{Criteria for final report}
+\begin{enumerate}
+	\item Quality of written text (10\%)
+	\begin{compactitem}
+		\item The text is free from grammatical errors and spelling mistakes
+		\item The text has a clear and logical structure
+	\end{compactitem}
+	\item Quality of data analyses (40\%)
+	\begin{compactitem}
+		\item Python code is complete and correct (see individual assignments for the credits that can be earned per component)
+		\item The reported descriptive statistics are complete (for example, not just the mean, but also the standard deviation)
+		\item Assumptions for statistical tests have been checked
+		\item The appropriate statistical tests have been applied. When there is doubt, the choice is motivated.
+	\end{compactitem}
+	\item Quality of the visualizations (20\%)
+	\begin{compactitem}
+		\item All graphs have descriptive labels on their axes
+		\item The values on the axes have units
+		\item The intervals of the values on the axes are suitable
+		\item The graph is clear and legible, and uses an appropriate font size
+		\item When appropriate, graphs contain a legible and clear legend
+		\item The use of color in the graphs is helpful for understanding the graphs
+	\end{compactitem}
+	\item Quality of the interpretations of the analyses (20\%)
+	\begin{compactitem}
+		\item Interpretations are appropriately nuanced
+		\item Interpretations are adequately motivated
+		\item Alternative interpretations are discussed
+	\end{compactitem}
+	\item Formal requirements (10\%)
+	\begin{compactitem}
+		\item The report should be handed in as a PDF document
+		\item Both the Python file and the final report have the correct filenames
+		\item The report contains a cover page that includes the names and student numbers of the authors, the name of the course, and the date on which the report was handed in
+		\item The report contains page numbers in the bottom right corner
+	\end{compactitem}
+\end{enumerate}
+
+\paragraph{Criteria for the presentation}
+
+\begin{enumerate}
+	\item Quality of the content (60\%)
+	\begin{compactitem}
+		\item The presentation contains a clear research statement.
+		\item The presentation is focused and to the point. It is tailored towards its target audience (students Business Analytics before they take Project Big Data).
+		\item Through the presentation, it becomes clear what the motivation for the research statement is.
+		\item The presentation contains visualizations of the data that support the main narrative of the presentation. These visualizations should be made with the presentation (projector, etc.) in mind.
+		\item The presentation has a clear and transparent structure.
+		\item The presentation offers relevant points for discussion on the basis of the performed analyses.
+	\end{compactitem}
+	\item Presentation skills (30\%)
+	\begin{compactitem}
+		\item The speaker speaks clearly, audibly, and with good pace.
+		\item The speaker keeps everyone in the audience engaged (eye contact, etc.).
+		\item The speaker uses his or her hands for non-verbal communication.
+		\item The speaker uses body language to convey confidence.
+		\item The speaker stays within the allotted time.
+		\item The speaker responds to questions adequately.
+	\end{compactitem}
+	\item Formal requirements (10\%)
+	\begin{compactitem}
+		\item The presentation is accompanied with a slide deck. The first slide contains the title of the presentation, the speakers’ names, the date, and the title of the course.
+		\item The slides contain sources where appropriate (e.g., citations, borrowed figures, etc.)
+	\end{compactitem}
+\end{enumerate}
+
+
+\end{document}
