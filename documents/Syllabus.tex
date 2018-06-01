@@ -4,6 +4,8 @@
 \usepackage[english]{babel}
 \usepackage{comment}
 \usepackage{paralist}
+\usepackage{hyperref}
+\usepackage[pdftex]{graphicx}
 
 \marginsize{2.5cm}{2.5cm}{2cm}{2cm}
 
@@ -108,8 +110,156 @@ If you were graded for any part in a previous year and hand in a new solution, o
 \paragraph{Plagiarism}
 The assignments and grading schemes have been designed for groups of two. Collaborating with other groups is not permitted. Using the internet as a passive resource is allowed. That means that you can search for solutions and copy code, as long as you indicate which parts have been copied and from where. Asking questions online is not permitted. All your code will be scanned for plagiarism. Violations are always reported to the Board of Examiners and may result in disciplinary measures.
 
-\paragraph{Software}
+\section*{Software}
 You will use Python, MongoDB and command line tools. Installation instructions for Windows and Mac OS X are included in this syllabus.
+
+\subsection*{Windows}
+\subsubsection*{Command line tools}
+The command line on Windows is traditionally not well developed (we will
+ignore PowerShell in this course). Fortunately, many tools from *nix
+have been ported to Windows. One of these ports is \mbox{unxutils}
+(\url{https://sourceforge.net/projects/unxutils/}). After downloading
+and opening the zip file, you find all useful tools in
+\textit{usr{\textbackslash}local{\textbackslash}wbin}. Copy the files,
+then paste them in a new folder \textit{C:{\textbackslash}Program~Files{\textbackslash}unxutils}.
+
+\noindent\begin{center}\includegraphics[width=5.552in,height=4.098in]{Syllabus-img1.png}\end{center}
+
+Next, add the folder \textit{C:{\textbackslash}Program
+Files{\textbackslash}unxutils} to the path, so Windows knows where the
+commands are located. To do this, press winkey+pause, go to advanced
+system settings, and then to \textit{environment variables} (Dutch:
+\textit{omgevingsvariabelen}) in the \textit{advanced} tab.
+
+\noindent\begin{center}\includegraphics[width=6.5in,height=2.0846in]{Syllabus-img2.png}
+\end{center}
+
+\noindent\begin{center}\includegraphics[width=6.4866in,height=3.2535in]{Syllabus-img3.png}
+\end{center}
+
+Add the folder \textit{C:{\textbackslash}Program~Files{\textbackslash}unxutils}
+to the system path. In earlier versions
+of Windows the path is a single text field where you can add the new
+folder at the end, separating it with a semicolon (;). In newer
+versions of Windows adding an entry to the path is straightforward.
+
+Some tools already exist in Windows but have a different implementation,
+such as sort. Rename sort.exe to sort2.exe to make it available.
+Don{\textquoteright}t forget to enter sort2 instead of sort whenever
+you want to run sort.
+
+To verify if the install is successful, open the command prompt (hit the
+winkey, type \texttt\small{cmd} and hit return) and type
+{\textquoteleft}grep{\textquoteright}. If it shows
+{\textquotedblleft}Usage: grep [OPTION]{\textquotedblright} the install
+is complete. If it says
+{\textquotedblleft}{\textquoteright}grep{\textquoteright} is not
+recognized{\textquotedblright} the install is incomplete. Enter the
+command \texttt\small{path} to see if the path is correct.
+
+----------> the section on cmd utils documentation
+
+\subsubsection*{Python}
+Any Python 3 distribution with pandas, numpy, pymongo, re, sklearn and
+matplotlib will do. We recommend WinPython
+(\url{https://winpython.github.io/}). Select the latest release and the
+latest subrelease, in this case 3.6.1, and click
+{\textquotedblleft}Downloads{\textquotedblright}. 
+
+\noindent\begin{center}\includegraphics[width=6.4925in,height=2.3134in]{Syllabus-download-WinPython.png}
+\end{center}
+
+To determine if you need the 32bit or 64bit version, press winkey+pause
+(see the install instructions for command line tools) and look for
+{\textquotedblleft}system type{\textquotedblright}. Make sure to
+download the full version (which is around 300 MB) and not the Zero
+version (around 25 MB).
+
+After downloading, run the .exe file and install WinPython to any
+folder, but be aware that a path containing spaces may result in
+unexpected behavior.
+
+Now open the folder WinPython was installed to and run
+\textit{Spyder.exe}. If you need to install extra modules, run
+\textit{WinPython Command Prompt.exe} and use \texttt\small{pip install}.
+
+\subsubsection*{MongoDB}
+MongoDB can be downloaded from
+\url{https://www.mongodb.com/download-center}; use the pane labeled
+"Community Center". The version that is
+selected runs on both the 32 bit and the 64 bit version of Windows 7
+and above. Run the installation wizard. Installation under Windows-10 may be
+a bit problematic. If you run into the error "setup wizard ended
+prematurely", uncheck the [Install MongoDB Compass] checkbox, somewhere in
+the setup process. Then create the folder
+\textit{c:{\textbackslash}data{\textbackslash}db}. Then go to
+\textit{C:{\textbackslash}Program
+Files{\textbackslash}MongoDB{\textbackslash}Server{\textbackslash}3.4{\textbackslash}bin}
+and run \textit{mongod.exe}. The following window should appear,
+indicating that MongoDB is running:
+
+\noindent\begin{center}\includegraphics[width=6.4925in,height=3.3957in]{Syllabus-img5.png}
+\end{center}
+
+If the window closes directly by itself, run \textit{mongod.exe} from
+the command line to see an error message.
+
+\subsection*{Mac OS X}
+\subsubsection*{Command line tools}
+Mac OS X already has all necessary tools, except gawk. You can open the
+terminal by going into Spotlight (with command ([2318?]) space, or by
+clicking on the magnifying glass in the top right corner of your
+screen) and searching for and selecting Terminal. 
+
+Install homebrew by copy-pasting the following command into the
+Terminal:
+
+\noindent\small\texttt{
+/usr/bin/ruby -e \$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)}
+
+
+Once homebrew is successfully installed on your system, install gawk via
+the command \small\texttt{brew install gawk}.
+
+\subsubsection*{Python}
+Download the .pkg installer for Python 3.6.1 here:
+
+\url{https://www.python.org/ftp/python/3.6.1/python-3.6.1-macosx10.6.pkg}
+
+Run the installer by executing the .pkg, and install Python by following
+the instructions.
+
+\subsubsection*{MongoDB}
+MongoDB can be downloaded from
+\url{https://www.mongodb.com/download-center}. Click OSX, download and
+extract the .tgz file to any folder. In the terminal, go to that folder
+and create a subfolder \texttt\small{data/db} with the command \texttt\small{mkdir
+-p data/dp} to complete the install. Each time you{\textquoteright}d
+like to use MongoDB, open the terminal, go to the right folder, and run
+\texttt\small{bin/mongod -{}-dpath data/db}.
+
+Alternatively, MongoDB can be installed with the command \texttt\small{brew
+install mongodb -{}-with-openssl. }Subsequently, create a mongodb data
+directory in your home directory with the command \texttt\small{mkdir -p
+\~{}/data/dp }. Running the command \texttt\small{bin/mongod -{}-dpath
+\~{}/data/db} should show you the following message.
+\includegraphics[width=6.4953in,height=0.1783in]{Syllabus-img6.png} 
+
+\subsubsection*{Spyder editor}
+Python comes with a package manager called \texttt\small{pip} (sometimes also
+called \texttt\small{pip-3.5 or pip-3.6; replace the following commands with
+the name that works on your system).} To install the Spyder editor,
+type the following two commands into the Terminal: 
+
+\texttt\small{pip install PyQt5}
+\\
+\texttt\small{pip install spyder}
+
+\subsubsection*{Python packages}
+In a similar way, use \texttt\small{pip install
+{\textless}packagename{\textgreater} }to install the following
+packages: pandas, numpy, pymongo, re, sklearn and matplotlib 
+
 
 % \newpage
 
