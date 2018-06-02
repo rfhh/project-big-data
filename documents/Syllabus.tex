@@ -6,6 +6,9 @@
 \usepackage{paralist}
 \usepackage{hyperref}
 \usepackage[pdftex]{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{applekeys}
 
 \marginsize{2.5cm}{2.5cm}{2cm}{2cm}
 
@@ -43,7 +46,7 @@ The entire course is done in groups of two students. You should select your own 
 
 At the end of the fourth week each group is expected to give a 10 - 12 minute presentation. The presentations are grouped in slots of one hour each. All three groups that present in a slot should be present during the entire hour. Be prepared by arriving on time and having your presentation ready in pdf format on a usb-stick and online.
 
-As for the style of your slides, make sure they look professional, have good contrast, are readable from the back, and have the same style as your partner’s. Practice with your partner to ensure a smooth transition between you two and to stick to the time limit. After 10 minutes we will give a sign. Avoid hitting the 12 minute mark because we will terminate your presentation to give the audience the opportunity to ask questions.
+As for the style of your slides, make sure they look professional, have good contrast, are readable from the back, and have the same style as your partner's. Practice with your partner to ensure a smooth transition between you two and to stick to the time limit. After 10 minutes we will give a sign. Avoid hitting the 12 minute mark because we will terminate your presentation to give the audience the opportunity to ask questions.
 
 You are expected to be (or seem) interested in the presentations and discussions of fellow students. Asking insightful questions is encouraged, while being a distraction will negatively affect your grade.
 
@@ -101,11 +104,12 @@ The tasks for the course (including weights) are summarized in the table below.
 		\hline
 	\end{tabular}
 \end{table}
-The criteria for the report and presentation are included in this syllabus. Grades for each part are given in the range 1—10, even for missing work. You pass if the weighted average is above 5.5. In principle, both group members get the same grade, except for the presentation.
+The criteria for the report and presentation are included in this syllabus.
+Grades for each part are given in the range 1--10, even for missing work. You pass if the weighted average is above 5.5. In principle, both group members get the same grade, except for the presentation.
 
 \paragraph{If you took this course in a previous year}
 If you took this course in a previous year and finished part of the assignments, you cannot do those parts with someone else this year. For those assignments you either have to work with the same partner as last year, or by yourself.
-If, in a previous year, you received a grade for the assignment of week 1, you either have to do this year’s command line assignment or this year’s complete assignment. If you only do the command line assignment, the grade will be weighted with your previous grade.
+If, in a previous year, you received a grade for the assignment of week 1, you either have to do this year's command line assignment or this year's complete assignment. If you only do the command line assignment, the grade will be weighted with your previous grade.
 If, in a previous year, you received a grade for any other assignment, report or presentation, you can keep that grade by not handing in a new solution or report or not giving a new presentation. If you choose to do this, please inform the course coordinator about your choice.
 If you were graded for any part in a previous year and hand in a new solution, only the last grade counts.
 
@@ -151,13 +155,13 @@ Don{\textquoteright}t forget to enter sort2 instead of sort whenever
 you want to run sort.
 
 To verify if the install is successful, open the command prompt (hit the
-winkey, type \small\texttt{cmd} and hit return) and type
+winkey, type {\small\texttt{cmd}} and hit return) and type
 {\textquoteleft}grep{\textquoteright}. If it shows
 {\textquotedblleft}Usage: grep [OPTION]{\textquotedblright} the install
 is complete. If it says
 {\textquotedblleft}{\textquoteright}grep{\textquoteright} is not
 recognized{\textquotedblright} the install is incomplete. Enter the
-command \small\texttt{path} to see if the path is correct.
+command {\small\texttt{path}} to see if the path is correct.
 
 \paragraph{Python}
 Any Python 3 distribution with pandas, numpy, pymongo, re, sklearn and
@@ -181,7 +185,7 @@ unexpected behavior.
 
 Now open the folder WinPython was installed to and run
 \textit{Spyder.exe}. If you need to install extra modules, run
-\textit{WinPython Command Prompt.exe} and use \small\texttt{pip install}.
+\textit{WinPython Command Prompt.exe} and use {\small\texttt{pip install}}.
 
 \paragraph{MongoDB}
 MongoDB can be downloaded from
@@ -192,7 +196,7 @@ and above. Run the installation wizard. Installation under Windows-10 may be
 a bit problematic. If you run into the error ``setup wizard ended
 prematurely'', uncheck the ``Install MongoDB Compass'' checkbox, somewhere in
 the setup process. After successful installation, create the folder
-\textit{c:{\textbackslash}data{\textbackslash}db}. Then go to
+\textit{C:{\textbackslash}data{\textbackslash}db}. Then go to
 \textit{C:{\textbackslash}Program
 Files{\textbackslash}MongoDB{\textbackslash}Server{\textbackslash}3.4{\textbackslash}bin}
 and run \textit{mongod.exe}. The following window should appear,
@@ -208,58 +212,59 @@ the command line to see an error message.
 
 \paragraph{Command line tools}
 Mac OS X already has all necessary tools, except gawk. You can open the
-terminal by going into Spotlight (with command ([2318?]) space, or by
+terminal by going into Spotlight (with command (\cmdkey) space, or by
 clicking on the magnifying glass in the top right corner of your
 screen) and searching for and selecting Terminal. 
 
 Install homebrew by copy-pasting the following command into the
 Terminal:
 
-\noindent\small\texttt{
-/usr/bin/ruby -e \$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)}
+\noindent{\small\texttt{
+/usr/bin/ruby -e \$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)}}
 
 
 Once homebrew is successfully installed on your system, install gawk via
-the command \small\texttt{brew install gawk}.
+the command {\small\texttt{brew install gawk}}.
 
 \paragraph{Python}
-Download the .pkg installer for Python 3.6.1 here:
+Download the .pkg installer for Python 3.6.5 here:
 
-\url{https://www.python.org/ftp/python/3.6.1/python-3.6.1-macosx10.6.pkg}
+\url{https://www.python.org/ftp/python/3.6.5/python-3.6.5-macosx10.6.pkg}
 
 Run the installer by executing the .pkg, and install Python by following
 the instructions.
 
 \paragraph{MongoDB}
 MongoDB can be downloaded from
-\url{https://www.mongodb.com/download-center}. Click OSX, download and
+\url{https://www.mongodb.com/download-center}; use the pane labeled
+``Community Server''. Click OSX, download and
 extract the .tgz file to any folder. In the terminal, go to that folder
-and create a subfolder \small\texttt{data/db} with the command \small\texttt{mkdir
--p data/dp} to complete the install. Each time you{\textquoteright}d
+and create a subfolder {\small\texttt{data/db}} with the command {\small\texttt{mkdir
+-p data/dp}} to complete the install. Each time you{\textquoteright}d
 like to use MongoDB, open the terminal, go to the right folder, and run
-\small\texttt{bin/mongod -{}-dpath data/db}.
+{\small\texttt{bin/mongod -{}-dpath data/db}}.
 
-Alternatively, MongoDB can be installed with the command \small\texttt{brew
-install mongodb -{}-with-openssl. }Subsequently, create a mongodb data
-directory in your home directory with the command \small\texttt{mkdir -p
-\~{}/data/dp }. Running the command \small\texttt{bin/mongod -{}-dpath
-\~{}/data/db} should show you the following message:
+Alternatively, MongoDB can be installed with the command {\small\texttt{brew
+install mongodb -{}-with-openssl}}. Subsequently, create a mongodb data
+directory in your home directory with the command {\small\texttt{mkdir -p
+\~{}/data/dp}}. Running the command {\small\texttt{bin/mongod -{}-dpath
+\~{}/data/db}} should show you the following message:
 
 \noindent\includegraphics[width=6.4953in,height=0.1783in]{Syllabus-img6.png} 
 
 \paragraph{Spyder editor}
-Python comes with a package manager called \small\texttt{pip} (sometimes also
-called \small\texttt{pip-3.5} or \small\texttt{pip-3.6}; replace the following commands with
+Python comes with a package manager called {\small\texttt{pip}} (sometimes also
+called {\small\texttt{pip-3.5}} or {\small\texttt{pip-3.6}}; replace the following commands with
 the name that works on your system). To install the Spyder editor,
 type the following two commands into the Terminal: 
 
-\noindent\small\texttt{pip install PyQt5}
+\noindent{\small\texttt{pip install PyQt5}}
 \\
-\small\texttt{pip install spyder}
+{\small\texttt{pip install spyder}}
 
 \paragraph{Python packages}
-In a similar way, use \small\texttt{pip install
-{\textless}packagename{\textgreater} }to install the following
+In a similar way, use {\small\texttt{pip install
+{\textless}packagename{\textgreater}}} to install the following
 packages: pandas, numpy, pymongo, re, sklearn and matplotlib 
 
 

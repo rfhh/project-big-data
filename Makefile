@@ -1,5 +1,7 @@
 .SUFFIXES:	.pdf .rst .tex .html
 
+export TEXINPUTS	:= $(TEXINPUTS):../documents/applekeys
+
 %.html:	%.rst
 	rst2html $< > $@
 
