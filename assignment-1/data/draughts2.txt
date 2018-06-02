@@ -1,3 +1,4 @@
+b
 (9,9)	wthis piece will be taken
 (2,2)	w
 
