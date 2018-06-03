@@ -4,16 +4,7 @@
 \usepackage{anysize}
 \usepackage[english]{babel}
 \usepackage{comment}
-% \usepackage{courier}
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
-\usepackage{mathptmx}
-\usepackage{paralist}
-
-% \usepackage{fixltx2e} % LaTeX patches, \textsubscript
-% \usepackage{cmap} % fix search and cut-and-paste in Acrobat
-% \usepackage{ifthen}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 \usepackage{paralist}
 
 \marginsize{2cm}{2cm}{2cm}{2cm}
@@ -23,188 +14,186 @@
 
 \newcommand{\blankline}{\par\vspace{5mm}}
 \newcommand{\tab}{\hspace*{2em}}
+\newcommand{\doublequote}{\texttt{"}}
 
 
 \begin{document}
 	
-\begin{center}
-	\textsc{\Large Project Big Data}
-	\blankline
+	\begin{center}
+		\textsc{\Large Project Big Data}
+		\blankline
+		
+		{\large Assignment 1}
+	\end{center}
 	
-	{\large Assignment 1}
-\end{center}
-
-\blankline \noindent The goal of this assignment is to first make you familiar with the command line and next with Python’s syntax, data types, and file i/o. This assignment is divided into twelve exercises.
-
-The files \texttt{hue\_upload.csv} and \texttt{hue\_upload2.csv}, bundled in ``\texttt{data week 1.zip}'',
-are two files in the same format, that have been collected over different time periods. Each line contains a line number, a user id, an event string, and a data field, separated by semicolons (;) and enclosed by double quotes (\textquotedbl{}).
-
-\section*{Command-line exercises}
-\label{command-line-exercises}
-
-Most *nix utilities provide information on their options and behaviour when
-they are passed the command-line option \texttt{-{}-help}. Besides, each
-command comes with a manual (man) page, invoked by typing ``\texttt{man
-<utility>}'' for
-*nix or Mac. For Windows, the man pages are best found on the web, e.g.
-at \url{https://man.cx}.
-
-Regular expressions come in different flavours. We advise to use the flavour
-known as `extended regular expressions'. \texttt{grep -E} and \texttt{sed -r}
-are options that select this flavour. Python and gawk support extended regular
-expressions by default.
-
-\begin{exercise}
-	(2 points) Write a command that combines \texttt{hue\_upload.csv} and \texttt{hue\_upload2.csv} into a single file \texttt{hue\_combined.csv}.
-\end{exercise}
-
-\begin{exercise}
-	(5 points) Write a command that reads \texttt{hue\_combined.csv}, removes the \textquotedbl{} characters and the first field of each row, and stores the result as \texttt{hue\_combined\_cleaned.csv}.
-\end{exercise}
-
-\begin{exercise}
-	(5 points) Write a command that removes duplicate lines from \texttt{hue\_combined\_cleaned.csv} and stores the result as \texttt{hue.csv}.
-\end{exercise}
-
-\noindent The following commands should take \texttt{hue.csv} as input.
-
-\begin{exercise}
-	(3 points) Write a command that shows the number of lamp\_change events.
-\end{exercise}
-
-\begin{exercise}
-	(5 points) Write a command that shows the unique values of adherence\_importance.
-\end{exercise}
-
-\begin{exercise}
-	(5 points) Write a command that shows the number of data points (lines) for each
-	user id.
-\end{exercise}
-
-\begin{exercise}
-	(10 points) Write a command that shows all unique strings. A string consists of one or more words joined by an underscore, a word being
-	one or more alphabetic characters: lamp\_change, rise\_reason, mei, but not 15\_mei or 2015\_risetime.
-\end{exercise}
-
-\begin{exercise}
-	(10 points) Write a command that shows the number of lamp\_change events for each relevant day.
-\end{exercise}
-
-
-\section*{Python exercises}
-\label{python-exercises}
-The following assignments use Python 3. To get hands-on familiarity with
-Python, you are strongly advised to work through a Python tutorial (up to
-some point: e.g., our course ``Project Big Data'' stops short of Python objects). We recommend one of these two web tutorials:
-\begin{enumerate}
-	\setlength\itemsep{1mm}
-	\item The ``official'' Python site: \href{https://docs.python.org/3/tutorial}{Python3 tutorial};
-	\item \href{https://developers.google.com/edu/python/}{Google's Python Class}, with the caveat that it uses Python2.7. However, we think it contains	mostly version-agnostic code so it will also serve to learn Python3.
-	One notable difference between Python2 and Python3 is the
-	{\small\texttt{print}} function: in Python3, braces are required around
-	the function arguments.
-\end{enumerate}
-
-\noindent Python has an excellent \href{https://docs.python.org/3/}{reference web site}, with documentation for all its language
-constructs and library APIs. Use this for all your Python work!
-
-\begin{exercise}
-	(10 points) A number is composed of digits. For example, 512 is composed of a “5”, a “1” and  a “2”. Write a Python script that accepts keyboard input (stdin). If the user does not enter a number or if the number is smaller than 10, the script has to keep asking for input. When a number is detected, the script should compute and output the number of digits, the number of distinct digits, the largest sum of two consecutive digits  (Dutch: opeenvolgende cijfers), and the sum of its distinct \href{https://en.wikipedia.org/wiki/Prime_factor}{prime factors}. For the number 5112, the program should give the following output:
+	\blankline \noindent The goal of this assignment is to first make you familiar with the command line and next with Python’s syntax, data types, and file i/o. This assignment is divided into twelve exercises.
 	
-	\begin{quote}{\ttfamily \raggedright \noindent
-			4\\
-			3\\
-			6\\
-			76
-		}
-	\end{quote}
-
-	\noindent Your implementation should print the solution to the screen. The function does not have to return anything.
-\end{exercise}
-
-\begin{exercise}
-	(10 points) Write a function that reads two text files, each of which has one word per line in lowercase, checks which words occur in
-	the first file but not in the second file, and writes those words to a third file in alphabetical order separated by a newline character. You	may assume that both text files comfortably fit in memory, and that the	files do not contain duplicates.
+	The files \texttt{hue\_upload.csv} and \texttt{hue\_upload2.csv}, bundled in ``\texttt{data week 1.zip}'',
+	are two files in the same format, that have been collected over different time periods. Each line contains a line number, a user id, an event string, and a data field, separated by semicolons (;) and enclosed by double quotes (\doublequote{}).
 	
-	Your implementation should output the solution to a file. The function does not have to return anything or print anything to the screen.	
-\end{exercise}
-
-\begin{exercise}
-	(10 points) Write a function that reads an integer distance matrix from a text file. An example is the following input file:
-	%
-	\begin{quote}{\ttfamily \raggedright \noindent
-			0~1~-\\
-			2~0~4\\
-			-~4~0
-		}
-	\end{quote}
-
-	\noindent which contains, e.g., the information that the distance from point 0 to point 1 is 1, while the distance from point 1 to point 0 is 2. A dash means that no direct connection exists (which can be implemented as float('inf'), so that the connection will not get used). Implement \href{https://en.wikipedia.org/wiki/Dijkstra's_algorithm\#Pseudocode}{Dijkstra’s Algorithm} to find the shortest path from point 0 to the last point (2 in this case). You may not use a package that features Dijkstra’s Algorithm. For the matrix shown above, the shortest distance is 5.
-
-	Your implementation should print the length of the shortest path and the shortest path itself to the screen.
-\end{exercise}
-
-\begin{exercise}
-	(15 points) International draughts (Dutch: dammen) is a board game played on a 10x10 field with a chessboard pattern. For this assignment, you have to	read a file that contains the state of a game as it is being played, and provide a graphical representation. For this, only a small subset of the rules is relevant:
-	%
+	\section*{Command-line exercises}
+	\label{command-line-exercises}
+	
+	Most *nix utilities provide information on their options and behaviour when
+	they are passed the command-line option \texttt{-{}-help}. Besides, each
+	command comes with a manual (man) page, invoked by typing ``\texttt{man
+		<utility>}'' for
+	*nix or Mac. For Windows, the man pages are best found on the web, e.g.
+	at \url{https://man.cx}.
+	
+	Regular expressions come in different flavours. We advise to use the flavour
+	known as `extended regular expressions'. \texttt{grep -E} and \texttt{sed -r}
+	are options that select this flavour. Python and gawk support extended regular
+	expressions by default.
+	
+	\begin{exercise}
+		(2 points) Write a command that combines \texttt{hue\_upload.csv} and \texttt{hue\_upload2.csv} into a single file \texttt{hue\_combined.csv}.
+	\end{exercise}
+	
+	\begin{exercise}
+		(5 points) Write a command that reads \texttt{hue\_combined.csv}, removes the \doublequote characters and the first field of each row, and stores the result as \texttt{hue\_combined\_cleaned.csv}.
+	\end{exercise}
+	
+	\begin{exercise}
+		(5 points) Write a command that removes duplicate lines from \texttt{hue\_combined\_cleaned.csv} and stores the result as \texttt{hue.csv}.
+	\end{exercise}
+	
+	\noindent The following commands should take \texttt{hue.csv} as input.
+	
+	\begin{exercise}
+		(3 points) Write a command that shows the number of lamp\_change events.
+	\end{exercise}
+	
+	\begin{exercise}
+		(5 points) Write a command that shows the unique values of adherence\_importance.
+	\end{exercise}
+	
+	\begin{exercise}
+		(5 points) Write a command that shows the number of data points (lines) for each
+		user id.
+	\end{exercise}
+	
+	\begin{exercise}
+		(10 points) Write a command that shows all unique strings. A string consists of one or more words joined by an underscore, a word being
+		one or more alphabetic characters: lamp\_change, rise\_reason, mei, but not 15\_mei or 2015\_risetime.
+	\end{exercise}
+	
+	\begin{exercise}
+		(10 points) Write a command that shows the number of lamp\_change events for each relevant day.
+	\end{exercise}
+	
+	
+	\section*{Python exercises}
+	\label{python-exercises}
+	The following assignments use Python 3. To get hands-on familiarity with
+	Python, you are strongly advised to work through a Python tutorial (up to
+	some point: e.g., our course ``Project Big Data'' stops short of Python objects). We recommend one of these two web tutorials:
+	\begin{enumerate}
+		\setlength\itemsep{1mm}
+		\item The ``official'' Python site: \href{https://docs.python.org/3/tutorial}{Python3 tutorial};
+		\item \href{https://developers.google.com/edu/python/}{Google's Python Class}, with the caveat that it uses Python2.7. However, we think it contains	mostly version-agnostic code so it will also serve to learn Python3.
+		One notable difference between Python2 and Python3 is the
+		{\small\texttt{print}} function: in Python3, braces are required around
+		the function arguments.
+	\end{enumerate}
+	
+	\noindent Python has an excellent \href{https://docs.python.org/3/}{reference web site}, with documentation for all its language
+	constructs and library APIs. Use this for all your Python work!
+	
+	\begin{exercise}
+		(10 points) A number is composed of digits. For example, 512 is composed of a “5”, a “1” and  a “2”. Write a Python script that accepts keyboard input (stdin). If the user does not enter a number or if the number is smaller than 10, the script has to keep asking for input. When a number is detected, the script should compute and output the number of digits, the number of distinct digits, the largest sum of two consecutive digits  (Dutch: opeenvolgende cijfers), and the sum of its distinct \href{https://en.wikipedia.org/wiki/Prime_factor}{prime factors}. For the number 5112, the program should give the following output:
+		
+		\begin{verbatim}
+		4
+		3
+		6
+		76
+		\end{verbatim}
+		
+		\noindent Your implementation should print the solution to the screen. The function does not have to return anything.
+	\end{exercise}
+	
+	\begin{exercise}
+		(10 points) Write a function that reads two text files, each of which has one word per line in lowercase, checks which words occur in
+		the first file but not in the second file, and writes those words to a third file in alphabetical order separated by a newline character. You	may assume that both text files comfortably fit in memory, and that the	files do not contain duplicates.
+		
+		Your implementation should output the solution to a file. The function does not have to return anything or print anything to the screen.	
+	\end{exercise}
+	
+	\begin{exercise}
+		(10 points) Write a function that reads an integer distance matrix from a text file. An example is the following input file:
+		
+		\begin{verbatim}
+		0 1 -
+		2 0 4
+		- 4 0
+		\end{verbatim}
+		
+		\noindent which contains, e.g., the information that the distance from point 0 to point 1 is 1, while the distance from point 1 to point 0 is 2. A dash means that no direct connection exists (which can be implemented as float('inf'), so that the connection will not get used). Implement \href{https://en.wikipedia.org/wiki/Dijkstra's_algorithm\#Pseudocode}{Dijkstra's Algorithm} to find the shortest path from point 0 to the last point (2 in this case). You may not use a package that features Dijkstra’s Algorithm. For the matrix shown above, the shortest distance is 5.
+		
+		Your implementation should print the length of the shortest path and the shortest path itself to the screen.
+	\end{exercise}
+	
+	\begin{exercise}
+		(15 points) International draughts (Dutch: dammen) is a board game played on a 10x10 field with a chessboard pattern. For this assignment, you have to	read a file that contains the state of a game as it is being played, and provide a graphical representation. For this, only a small subset of the rules is relevant:
+		%
+		\begin{itemize}
+			\setlength\itemsep{1mm}
+			\item There are two players, white and black.
+			\item A 10x10 coordinate system is imposed on the board such that (1,1)	is the left lower square for the white player and (10,1) is the	right lower square for the white player.
+			\item The board is oriented such that (1,1) is a dark square.
+			\item Pieces can only be placed on dark squares, i.e., on (x,y) for which \texttt{|x-y| = 0 (mod 2)}.
+			\item There are two types of pieces: regular pieces and promoted pieces.
+		\end{itemize}
+		
+		\noindent The starting position will be supplied in an ASCII text file.  Its lines contain the positions of (crowned) pieces. A valid line contains a coordinate, followed by a tab, followed by the type (“w”, “W”, “b” or “B” for a white piece, white promoted piece, black piece or black promoted piece, respectively). Invalid lines should be ignored, as should any characters after the type. The newline character can be 	CR+LF (Windows), CR (Mac, up to OS 9) or LF (\doublequote{}*\doublequote{}nix). An example is	shown below:
+		\begin{verbatim}
+		w
+		(5,5) w the predator
+		(6,6) b the prey
+		(this is an example)
+		\end{verbatim}
+		
+		Write a function that takes the name and path of a text file as	its argument, reads the text file, and prints a graphical representation of the board on the screen. The representation should use underscores and vertical bars as follows (notice that this example is a 3x3 board in stead of a full board):
+		%
+		
+		\begin{verbatim}
+			 ___________
+			|   |   |   |
+			|   |   |   |
+			|___|___|___|
+			|   |   |   |
+			|   |   |   |
+			|___|___|___|
+			|   |   |   |
+			|   |   |   |
+			|___|___|___|
+			
+		\end{verbatim}
+		
+		\noindent Note that each side consists of either three underscores or three vertical bars. The center of each square should contain the character w, W, b or B to indicate the piece (if any).
+		
+		Your implementation should print the output to the screen. The function does not need to return anything. For this assignment, you need to verify whether \texttt{|x-y| = 0 (mod 2)}, in other words \texttt{|x-y|} is an even number. The template provides some invalid
+		lines as examples. The line with coordinate (3,1) is invalid since it starts with a space, and the line with coordinate (3,5) is invalid	since there is no tab that separates the coordinate from the color.
+	\end{exercise}
+	
+	\section*{Notes}
+	Another 10 points are awarded for the cleanliness of your code and the use of idiomatic Python (such as list comprehensions, sets, dicts,
+	etc.). You can obtain 100 points in total.
+	
+	The assignment should be done in groups of two students, and must be handed in
+	via Canvas on June 8 by 23:59h.
+	Your solution should use the provided template (\texttt{solution.py}), which is the (only) file that you should submit. It is \emph{crucial} that you do not alter the names and arguments of the existing functions, although adding additional functions is recommended. The template contains the file \texttt{run\_solution.py} that can be used to verify that your \texttt{solution.py} is in the correct format; \texttt{run\_solution.py} can be run from the command line via \texttt{python run\_solution.py} (Windows) or \texttt{python3.6 run\_solution.py} (Mac), or from Spyder.
+	
+	Each group should hand in only one solution. If both students submit a solution, only the first submission will be graded. Feedback will be provided to the e-mail addresses you provide in \texttt{solution.py}.
+	
+	\section*{Tips}
+	
 	\begin{itemize}
 		\setlength\itemsep{1mm}
-		\item There are two players, white and black.
-		\item A 10x10 coordinate system is imposed on the board such that (1,1)	is the left lower square for the white player and (10,1) is the	right lower square for the white player.
-		\item The board is oriented such that (1,1) is a dark square.
-		\item Pieces can only be placed on dark squares, i.e., on (x,y) for which \texttt{|x-y| = 0 (mod 2)}.
-		\item There are two types of pieces: regular pieces and promoted pieces.
+		\item If your shell command does not run, check whether you accidentally use '' (curly quote) in stead of \doublequote{} (straight quote) or -- (endash) in stead of - (minus sign). These are common copy/paste errors.
+		\item We will run your solutions with different (possibly longer or more complex) input files than provided in the template.
+		\item Use the Python \href{https://docs.python.org/3/}{reference} on the web!
 	\end{itemize}
 	
-	\noindent The starting position will be supplied in an ASCII text file.  Its lines contain the positions of (crowned) pieces. A valid line contains a coordinate, followed by a tab, followed by the type (“w”, “W”, “b” or “B” for a white piece, white promoted piece, black piece or black promoted piece, respectively). Invalid lines should be ignored, as should any characters after the type. The newline character can be 	CR+LF (Windows), CR (Mac, up to OS 9) or LF (\textquotedbl{}*\textquotedbl{}nix). An example is	shown below:
-	%
-	\begin{quote}{\ttfamily \raggedright \noindent
-			(5,5)~w~the~predator\\
-			(6,6)~b~the~prey\\
-			(this~is~an~example)
-		}
-	\end{quote}
-	Write a function that takes the name and path of a text file as	its argument, reads the text file, and prints a graphical representation of the board on the screen. The representation should use underscores and vertical bars as follows (notice that this example is a 3x3 board in stead of a full board):
-	%
-	\begin{quote}{\ttfamily \raggedright \noindent
-			~\_\_\_\_\_\_\_\_\_\_\_\\
-			|~~~|~~~|~~~|\\
-			|~~~|~~~|~~~|\\
-			|\_\_\_|\_\_\_|\_\_\_|\\
-			|~~~|~~~|~~~|\\
-			|~~~|~~~|~~~|\\
-			|\_\_\_|\_\_\_|\_\_\_|\\
-			|~~~|~~~|~~~|\\
-			|~~~|~~~|~~~|\\
-			|\_\_\_|\_\_\_|\_\_\_|
-		}
-	\end{quote}
-	
-	\noindent Note that each side consists of either three underscores or three vertical bars. The center of each square should contain the character w, W, b or B to indicate the piece (if any).
-		
-	Your implementation should print the output to the screen. The function does not need to return anything. For this assignment, you need to verify whether \texttt{|x-y| = 0 (mod 2)}, in other words \texttt{|x-y|} is an even number. The template provides some invalid
-	lines as examples. The line with coordinate (3,1) is invalid since it starts with a space, and the line with coordinate (3,5) is invalid	since there is no tab that separates the coordinate from the color.
-\end{exercise}
-
-\section*{Notes}
-Another 10 points are awarded for the cleanliness of your code and the use of idiomatic Python (such as list comprehensions, sets, dicts,
-etc.). You can obtain 100 points in total.
-
-The assignment should be done in groups of two students, and must be handed in
-via Canvas on June 8 by 23:59h.
-Your solution should use the provided template (\texttt{solution.py}), which is the (only) file that you should submit. It is \emph{crucial} that you do not alter the names and arguments of the existing functions, although adding additional functions is recommended. The template contains the file \texttt{run\_solution.py} that can be used to verify that your \texttt{solution.py} is in the correct format; \texttt{run\_solution.py} can be run from the command line via \texttt{python run\_solution.py} (Windows) or \texttt{python3.6 run\_solution.py} (Mac), or from Spyder.
-
-Each group should hand in only one solution. If both students submit a solution, only the first submission will be graded. Feedback will be provided to the e-mail addresses you provide in \texttt{solution.py}.
-
-\section*{Tips}
-
-\begin{itemize}
-	\setlength\itemsep{1mm}
-	\item If your shell command does not run, check whether you
-	accidentally use ” (curly quote) in stead of \textquotedbl{} (straight quote) or –
-	(endash) in stead of - (minus sign). These are common copy/paste errors.
-	\item We will run your solutions with different (possibly longer or more complex) input files than provided in the template.
-	\item Use the Python \href{https://docs.python.org/3/}{reference} on the web!
-\end{itemize}
-
 \end{document}
