@@ -36,7 +36,8 @@
 
 \blankline \noindent The goal of this assignment is to first make you familiar with the command line and next with Python’s syntax, data types, and file i/o. This assignment is divided into twelve exercises.
 
-The files \texttt{hue\_upload.csv} and \texttt{hue\_upload2.csv} are two files in the same format, that have been collected over different time periods. Each line contains the line number, the user id, the event string, and a data field, separated by semicolons (;) and enclosed by double quotes (\textquotedbl{}).
+The files \texttt{hue\_upload.csv} and \texttt{hue\_upload2.csv}, bundled in ``\texttt{data week 1.zip}'',
+are two files in the same format, that have been collected over different time periods. Each line contains a line number, a user id, an event string, and a data field, separated by semicolons (;) and enclosed by double quotes (\textquotedbl{}).
 
 \section*{Command-line exercises}
 \label{command-line-exercises}
@@ -94,11 +95,14 @@ expressions by default.
 \label{python-exercises}
 The following assignments use Python 3. To get hands-on familiarity with
 Python, you are strongly advised to work through a Python tutorial (up to
-some point: e.g., our class ``Project Big Data'' stops short of Python objects). We recommend one of these two web tutorials:
+some point: e.g., our course ``Project Big Data'' stops short of Python objects). We recommend one of these two web tutorials:
 \begin{enumerate}
 	\setlength\itemsep{1mm}
-	\item The ``official'' Python site: \href{https://docs.python.org/3/tutorial}{Python3 tutorial}
+	\item The ``official'' Python site: \href{https://docs.python.org/3/tutorial}{Python3 tutorial};
 	\item \href{https://developers.google.com/edu/python/}{Google's Python Class}, with the caveat that it uses Python2.7. However, we think it contains	mostly version-agnostic code so it will also serve to learn Python3.
+	One notable difference between Python2 and Python3 is the
+	{\small\texttt{print}} function: in Python3, braces are required around
+	the function arguments.
 \end{enumerate}
 
 \noindent Python has an excellent \href{https://docs.python.org/3/}{reference web site}, with documentation for all its language
@@ -122,7 +126,7 @@ constructs and library APIs. Use this for all your Python work!
 	(10 points) Write a function that reads two text files, each of which has one word per line in lowercase, checks which words occur in
 	the first file but not in the second file, and writes those words to a third file in alphabetical order separated by a newline character. You	may assume that both text files comfortably fit in memory, and that the	files do not contain duplicates.
 	
-	\blankline \noindent Your implementation should output the solution to a file. The function does not have to return anything or print anything to the screen.	
+	Your implementation should output the solution to a file. The function does not have to return anything or print anything to the screen.	
 \end{exercise}
 
 \begin{exercise}
@@ -148,7 +152,7 @@ constructs and library APIs. Use this for all your Python work!
 		\item There are two players, white and black.
 		\item A 10x10 coordinate system is imposed on the board such that (1,1)	is the left lower square for the white player and (10,1) is the	right lower square for the white player.
 		\item The board is oriented such that (1,1) is a dark square.
-		\item Pieces can only be placed on dark squares, i.e., on (x,y) for which \texttt{|x-y| = 0 * (mod 2)}.
+		\item Pieces can only be placed on dark squares, i.e., on (x,y) for which \texttt{|x-y| = 0 (mod 2)}.
 		\item There are two types of pieces: regular pieces and promoted pieces.
 	\end{itemize}
 	
@@ -160,7 +164,7 @@ constructs and library APIs. Use this for all your Python work!
 			(this~is~an~example)
 		}
 	\end{quote}
-	Write a function that takes the name and path of a text file as	its argument, reads the text file, and prints a graphical representation of the board on the screen. The representation should use underscores and vertical bars as follows:
+	Write a function that takes the name and path of a text file as	its argument, reads the text file, and prints a graphical representation of the board on the screen. The representation should use underscores and vertical bars as follows (notice that this example is a 3x3 board in stead of a full board):
 	%
 	\begin{quote}{\ttfamily \raggedright \noindent
 			~\_\_\_\_\_\_\_\_\_\_\_\\
@@ -197,8 +201,8 @@ Each group should hand in only one solution. If both students submit a solution,
 \begin{itemize}
 	\setlength\itemsep{1mm}
 	\item If your shell command does not run, check whether you
-	accidentally use ” (curly quote) (in stead of \textquotedbl{}) or –
-	(endash) (in stead of -). These are common copy/paste errors.
+	accidentally use ” (curly quote) in stead of \textquotedbl{} (straight quote) or –
+	(endash) in stead of - (minus sign). These are common copy/paste errors.
 	\item We will run your solutions with different (possibly longer or more complex) input files than provided in the template.
 	\item Use the Python \href{https://docs.python.org/3/}{reference} on the web!
 \end{itemize}
