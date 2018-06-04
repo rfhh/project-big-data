@@ -221,8 +221,22 @@ Terminal:
 \noindent{\small\texttt{
 /usr/bin/ruby -e \$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)}}
 
+brew is installed into {\small\texttt{/usr/local/bin}}. Likewise,
+brew uses {\small\texttt{/usr/local/bin}} to install other software
+into. To use brew and software installed by brew, you need to add
+{\small\texttt{/usr/local/bin}} to your {\small\texttt{PATH}} environment
+variable as follows. Edit {\small\texttt{\textasciitilde/.bashrc}}
+and add the following line:
 
-Once homebrew is successfully installed on your system, install gawk via the command {\small\texttt{brew install gawk}}.
+\noindent{\small\texttt{export PATH=\$PATH:/usr/local/bin}}
+
+Save. Then close and reopen your Terminal. When you type
+the command {\small\texttt{which brew}} it should report:
+{\small\texttt{/usr/local/bin/brew}}
+
+Once homebrew is successfully installed on your system, install gawk via the
+command {\small\texttt{brew install gawk}}. Verify that gawk is found and
+gives sane output by typing {\small\texttt{gawk --help}} to the Terminal.
 
 \paragraph{Python}
 Download the .pkg installer for Python 3.6.5 here:
