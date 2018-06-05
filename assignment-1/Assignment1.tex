@@ -15,6 +15,7 @@
 \newcommand{\blankline}{\par\vspace{5mm}}
 \newcommand{\tab}{\hspace*{2em}}
 \newcommand{\doublequote}{\texttt{"}}
+\newcommand{\pipe}{$\vert$}
 
 
 \begin{document}
@@ -45,6 +46,22 @@
 	known as `extended regular expressions'. \texttt{grep -E} and \texttt{sed -r}
 	are options that select this flavour. Python and gawk support extended regular
 	expressions by default.
+
+	Some characters have a special meaning for the terminal/CommandPrompt,
+	like \doublequote{}, \pipe, ; and then some. If they need to appear on
+	your command line normally, i.e. not in their special meaning, they
+	must be \emph{escaped}. Alas, this works differently under Windows
+	and Mac/*nix.
+
+	Windows: to pass e.g. a \doublequote{} or ; in a parameter to your
+	command-line program, escape it by prefixing it with
+	\^{}\textbackslash\^{}
+
+	Mac: to pass e.g. a ; in a parameter to your command-line program,
+	escape it by prefixing it with a \textbackslash
+
+	Both: if a special character occurs inside a double-quoted string,
+	that is (usually) enough to escape its special meaning.
 	
 	\begin{exercise}
 		(2 points) Write a command that combines \texttt{hue\_upload.csv} and \texttt{hue\_upload2.csv} into a single file \texttt{hue\_combined.csv}.
