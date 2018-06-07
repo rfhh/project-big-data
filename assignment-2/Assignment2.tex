@@ -183,7 +183,7 @@ if idx in df.index:\\
 }
 
 
-\item The first one is \texttt{\small calling df.set\_value} and obtaining
+\item The next hurdle is \texttt{\small calling df.set\_value} and obtaining
 the error ``ValueError: could not convert string to float''. It turns
 out to be difficult to pinpoint the exact cause of this error. As a
 workaround, we advise to use the following function:
@@ -207,7 +207,7 @@ Mixing float with \texttt{\small nan} ensures that Pandas does not
 infer incorrect datatypes. Call this function to add a row, and use
 \texttt{\small set\_value} to modify the dataframe.
 
-\item The second hurdle is setting the primary key in mongodb. As mongodb
+\item The third hurdle is setting the primary key in mongodb. As mongodb
 does not support tuples (just dicts and lists), the primary key has to be
 converted from a tuple to a dict (with strings 'date' and 'user' as keys).
 
