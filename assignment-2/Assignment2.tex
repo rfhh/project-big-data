@@ -183,7 +183,8 @@ if idx in df.index:\\
 }
 
 
-\item The next hurdle is \texttt{\small calling df.set\_value} and obtaining
+\item The next hurdle is that in some configurations, calling \texttt{\small
+df.set\_value} leads to
 the error ``ValueError: could not convert string to float''. It turns
 out to be difficult to pinpoint the exact cause of this error. As a
 workaround, we advise to use the following function:
