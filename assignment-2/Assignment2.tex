@@ -162,7 +162,8 @@ example shows. The following code \emph{does not} run as expected:
 % Need pastable quotes so cannot use verbatim
 \texttt{\small
 idx = (datetime.date(2015,1,1),10)\\
-df = df.append(pd.Series({\singlequote{}bedtime\singlequote{}:None,\singlequote{}intended\_bedtime\singlequote{}:None}, name=idx))\\
+df =
+df.append(pd.Series(\{\singlequote{}bedtime\singlequote{}:None,\singlequote{}intended\_bedtime\singlequote{}:None\}, name=idx))\\
 if idx in df.index:\\
 \mbox{}~~~~print(\doublequote{}surprisingly, this line does not
 run\doublequote{})
@@ -177,7 +178,8 @@ The following code (the change is in the first line) \emph{does run} as
 expected:
 
 \texttt{\small idx = (datetime.datetime(2015,1,1,0,0,0),10)\\
-df = df.append(pd.Series({\singlequote{}bedtime\singlequote{}:None,\singlequote{}intended\_bedtime\singlequote{}:None}, name=idx))\\
+df =
+df.append(pd.Series(\{\singlequote{}bedtime\singlequote{}:None,\singlequote{}intended\_bedtime\singlequote{}:None\}, name=idx))\\
 if idx in df.index:\\
 \mbox{}~~~~print(\doublequote{}This gets printed (as expected)\doublequote{})
 }
