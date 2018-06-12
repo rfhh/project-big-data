@@ -1,0 +1,125 @@
+\documentclass[a4paper]{report}
+
+\usepackage{amsthm}
+\usepackage{anysize}
+\usepackage[english]{babel}
+\usepackage{comment}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{paralist}
+
+\marginsize{2cm}{2cm}{2cm}{2cm}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+
+\newcommand{\blankline}{\par\vspace{5mm}}
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\doublequote}{\texttt{"}}
+\newcommand{\singlequote}{\char13}
+\newcommand{\pipe}{$\vert$}
+
+
+\begin{document}
+
+\begin{center}
+    \textsc{\Large Project Big Data}
+    \blankline
+    
+    {\large Assignment 3}
+\end{center}
+
+For each of the following assignments, use the hue dataset supplied on
+Canvas (\texttt{\small hue\_week\_3\_2017.csv}). Furthermore, assume
+that there are multiple threads handling the mapping phase, but that
+there is only one thread in charge of reducing. This means that if you
+need to use global variables, you should do so only in the reducer. In
+addition, assume that the end of the input will be signaled by an empty
+row (delimiters only, no values). Finally, make sure that each function
+writes its output to STDOUT via the \texttt{\small print()} function.
+
+\begin{exercise}
+(10 points) Write a MapReduce algorithm that counts and outputs the
+total number of times the fitness value is strictly higher than 50. The
+expected output is a single integer.
+\end{exercise}
+
+\begin{exercise}
+(10 points) Write a MapReduce algorithm that calculates the mean fitness
+per participant. Do not use any statistical packages to calculate
+the mean. The expected output is one line per participant, containing
+the participant’s ID and the mean of his or her fitness, separated by
+a tab (“\t”). The outputted lines do not have to be sorted.
+\end{exercise}
+
+\begin{exercise}
+(20 points) Write a MapReduce algorithm that calculates the mean bedtime
+per participant. So, if someone goes to bed at 23.00h one night,
+and at 00.30h the next, the mean bedtime for those two nights would
+be 23:45h. The expected output is one line per participant, containing
+the participant’s ID and the mean of his or her bedtimes, separated
+by a tab (“\t”). The outputted lines do not have to be sorted.
+\end{exercise}
+
+\begin{exercise}
+(15 points) Write a MapReduce algorithm that outputs the top
+five ‘biggest bedtime procrastinators’. Participants cannot
+“compensate” by going to bed earlier on some other nights. Finally,
+assume that the reducer cannot accumulate all the data before sorting
+due to memory restrictions; so implement a custom, memory-­‐efficient
+sorting method in the reducer that keeps the top five up-­‐to-­‐date
+for each incoming line of data. The expected output is five lines long,
+with each line containing a participant’s ID and the number of seconds
+he or she procrastinated.
+\end{exercise}
+
+The following three assignments pertain to parallelization through the
+use of a (FIFO) queue.
+
+\begin{exercise}
+(15 points) Implement the function \texttt{\small instantiate\_queue()} that
+instantiates a queue with a maximum size of 30 (the Queue class is
+already imported in the template). In addition, implement the function
+\texttt{\small consume\_data\_stream(queue)} using the “requests” library to connect to
+the data stream \texttt{\small http://stream.meetup.com/2/rsvps} (make sure to add the
+argument stream=True to the \texttt{\small requests.get()} call). If “requests” is
+not available, use “pip/pip3/pip3.6 install requests” to install it.
+The function should parse 30 JSON entries, add each entry to the queue,
+and print the current size of the queue. After 30 entries, it should
+stop consuming data.
+\end{exercise}
+
+\begin{exercise}
+(10 points) Implement the \texttt{\small function process\_queue(queue)} that repeatedly
+gets an element from the queue. If the element is a dictionary that
+contains the key ‘venue’, it should print the coordinates of the
+venue (for example: (47.423569, 8.56151)). If the element from the
+queue is None, the function should return (otherwise the function might
+hang forever).
+\end{exercise}
+
+\begin{exercise}
+(10 points) Implement the function \texttt{\small main()} that
+
+\begin{itemize}
+\item calls \texttt{\small instantiate\_queue()} once and stores the returned queue object
+in a variable queue,
+\item calls \texttt{\small consume\_data\_stream(queue)} once and blocks (waits) until the
+queue is filled,
+\item instantiates three “worker” Threads that have as its target
+the function process\_queue with argument queue,
+\item blocks (waits) until the queue is empty,
+\item puts None into the queue three times,
+\item joins the worker threads (and exits).
+\end{itemize}
+\end{exercise}
+
+Another 10 points are awarded for the cleanliness of your code and the
+use of idiomatic Python. A total of 100 points can be obtained.
+
+The assignment should be done in groups of two students, and must be
+handed in via Blackboard on June 26 by 14:00 hours. The file must
+have the same structure as the template (including the disclosure
+and the function names). Adding additional functions is recommended.
+Each group should hand in only one solution.
+
+\end{document}
