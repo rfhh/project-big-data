@@ -8,6 +8,7 @@
 \usepackage{paralist}
 
 \marginsize{2cm}{2cm}{2cm}{2cm}
+\setlength{\parindent}{0pt}
 
 \theoremstyle{definition}
 \newtheorem{exercise}{Exercise}
@@ -35,7 +36,7 @@ there is only one thread in charge of reducing. This means that if you
 need to use global variables, you should do so only in the reducer. In
 addition, assume that the end of the input will be signaled by an empty
 row (delimiters only, no values). Finally, make sure that each function
-writes its output to STDOUT via the \texttt{\small print()} function.
+writes its output to the standard output via the \texttt{\small print()} function.
 
 \begin{exercise}
 (10 points) Write a MapReduce algorithm that counts and outputs the
@@ -48,7 +49,7 @@ expected output is a single integer.
 per participant. Do not use any statistical packages to calculate
 the mean. The expected output is one line per participant, containing
 the participant’s ID and the mean of his or her fitness, separated by
-a tab (“\t”). The outputted lines do not have to be sorted.
+a tab (\texttt{\small "\textbackslash{}t"}). The outputted lines do not have to be sorted.
 \end{exercise}
 
 \begin{exercise}
@@ -68,7 +69,7 @@ assume that the reducer cannot accumulate all the data before sorting
 due to memory restrictions; so implement a custom, memory-­‐efficient
 sorting method in the reducer that keeps the top five up-­‐to-­‐date
 for each incoming line of data. The expected output is five lines long,
-with each line containing a participant’s ID and the number of seconds
+with each line containing a participant's ID and the number of seconds
 he or she procrastinated.
 \end{exercise}
 
@@ -81,17 +82,21 @@ instantiates a queue with a maximum size of 30 (the Queue class is
 already imported in the template). In addition, implement the function
 \texttt{\small consume\_data\_stream(queue)} using the “requests” library to connect to
 the data stream \texttt{\small http://stream.meetup.com/2/rsvps} (make sure to add the
-argument stream=True to the \texttt{\small requests.get()} call). If “requests” is
-not available, use “pip/pip3/pip3.6 install requests” to install it.
+argument stream=True to the \texttt{\small requests.get()} call). If
+\texttt{\small requests} is
+not available, use \texttt{\small pip/pip3/pip3.6 install requests} to install it.
 The function should parse 30 JSON entries, add each entry to the queue,
 and print the current size of the queue. After 30 entries, it should
 stop consuming data.
+Python provides a module \texttt{\small json} that you can use to parse or
+query JSON data. Have a look at the function \texttt{\small json.loads()}, and
+at the function \texttt{\small get()} that queries a JSON data item.
 \end{exercise}
 
 \begin{exercise}
-(10 points) Implement the \texttt{\small function process\_queue(queue)} that repeatedly
+(10 points) Implement the function \texttt{\small process\_queue(queue)} that repeatedly
 gets an element from the queue. If the element is a dictionary that
-contains the key ‘venue’, it should print the coordinates of the
+contains the key \texttt{\small venue}, it should print the coordinates of the
 venue (for example: (47.423569, 8.56151)). If the element from the
 queue is None, the function should return (otherwise the function might
 hang forever).
@@ -102,11 +107,13 @@ hang forever).
 
 \begin{itemize}
 \item calls \texttt{\small instantiate\_queue()} once and stores the returned queue object
-in a variable queue,
+in a variable \texttt{\small queue},
 \item calls \texttt{\small consume\_data\_stream(queue)} once and blocks (waits) until the
 queue is filled,
-\item instantiates three “worker” Threads that have as its target
-the function process\_queue with argument queue,
+\item instantiates three “worker” Threads that all have as their target
+the function \texttt{\small process\_queue} with argument \texttt{\small queue};
+have a look at the python module \texttt{\small threading} and the
+constructor \texttt{\small threading.Thread()};
 \item blocks (waits) until the queue is empty,
 \item puts None into the queue three times,
 \item joins the worker threads (and exits).
@@ -117,7 +124,7 @@ Another 10 points are awarded for the cleanliness of your code and the
 use of idiomatic Python. A total of 100 points can be obtained.
 
 The assignment should be done in groups of two students, and must be
-handed in via Blackboard on June 26 by 14:00 hours. The file must
+handed in via Canvas on June 24 by 14:00 hours. The file must
 have the same structure as the template (including the disclosure
 and the function names). Adding additional functions is recommended.
 Each group should hand in only one solution.
