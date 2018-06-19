@@ -2,5 +2,7 @@
 *.log
 *.out
 *.aux
+.*.swp
 
 assignment-1/*.zip
+
