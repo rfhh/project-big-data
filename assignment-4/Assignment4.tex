@@ -1,0 +1,223 @@
+\documentclass[a4paper]{report}
+
+\usepackage{amsthm}
+\usepackage{anysize}
+\usepackage[english]{babel}
+\usepackage{comment}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{paralist}
+
+\marginsize{2cm}{2cm}{2cm}{2cm}
+\setlength{\parindent}{0pt}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+
+\newcommand{\blankline}{\par\vspace{5mm}}
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\doublequote}{\texttt{"}}
+\newcommand{\singlequote}{\char13}
+\newcommand{\pipe}{$\vert$}
+
+
+\begin{document}
+
+\begin{center}
+    \textsc{\Large Project Big Data}
+    \blankline
+    
+    {\large Assignment week 4 (Report)}
+\end{center}
+
+You will continue working with data from the ``HUE bedtime procrastination
+study''. A cleaned version of the hue data will be made available
+(\texttt{\small hue\_week\_4\_2017.csv}), as well as another file that
+contains data from the post‐study questionnaire that participants filled
+out at the end of the study (\texttt{\small hue\_questionnaire.csv}). This
+file contains information about
+
+\medskip
+\begin{tabular}{|l|p{0.7\textwidth}|}
+\hline
+gender  & 1 = male, 2 = female \\
+
+age & \\
+
+chronotype  & Single item (7-­‐point scale), do you consider yourself
+	more of a morning [1] or an evening person? [7] \\
+
+bp\_scale  & Dutch version of the Bedtime Procrastination Scale
+\href{http://selfregulationlab.nl/wp-content/uploads/2012/04/J-Health-Psychol-2016-Kroese-853-62.pdf }{Kroese et al., 2014} \\
+
+motivation  & Questions pertaining to personality traits related to
+	procrastination. Single item (7-­‐point scale), how motivated
+	were you to go to bed on time each night? (1 = not motivated;
+	7 = very motivated) \\
+
+daytime\_sleepiness  & Dutch translation of the Epworth Sleepiness Scale
+	(4-­‐point scale from 0-­‐3; 8 questions, values summed)
+	\href{http://www.mwjohns.com/wp-content/uploads/2009/murray\_papers/a\_new\_method\_for\_measure\_daytime\_sleepiness\_the\_epworth\_sleepiness\_scale.pdf}{ESS; Johns, 1991}. \\
+
+self\_reported\_effectiveness  & Single item (7-­‐point scale), do you feel
+	more rested since the intervention? \\
+\hline
+\end{tabular}
+\medskip
+
+For the final assignment, you will use Python to examine this
+post‐questionnaire data in relation to the HUE data file, visualize
+trends and relationships, look for correlations between factors, test
+for significant differences between groups and build a regression model
+to predict bedtime delay. You are required to hand in your Python code
+to show that all transformations, visualizations and analyses have been
+done in Python. Your Python code will not be graded, however. You will
+bundle your findings in a neatly formatted final report of at most 6 pages
+(cover page excluded). This report should not contain any python code. See
+page 3 of this document for the structure and content that the report
+should have. For the grading criteria please refer to the syllabus. The
+report should be written in English.  In order to perform the analyses,
+a number of transformations on the data still need to be done. To help
+you along, a Python template will be made available with a recommended
+structure for your Python code. The following steps must be implemented.
+
+\begin{itemize}
+\item Read the hue data file and the questionnaire data file into two
+separate pandas DataFrames.
+\item Create a new DataFrame that contains the following Series:
+
+\begin{tabular}{l p{0.6\textwidth}}
+ID & Participant ID, \\
+group & Participant group (1 for experimental, 0 for control), \\
+delay\_nights & The number of nights a participant delayed their bedtime
+	(range: 0-12),  \\
+delay\_time  &
+	The mean time in seconds a participant delayed their bedtime
+	(total delay in seconds, divided by the number of observations
+	measured for each individual, rounded to nearest second). \\
+\end{tabular}
+
+Set the index of this new DataFrame to 'ID'. Note that there should only
+be a single row per participant ID.
+
+\item Fill this new DataFrame by transforming data from the DataFrame
+about participants' bedtimes (from the hue data file).
+
+\item Merge this new DataFrame with the post-­‐questionnaire data and
+store the resulting DataFrame in a new variable. Perform this joining
+operation of the two DataFrames in such a way that the resulting DataFrame
+only contains IDs that were present in both datasets.
+
+\item Use the scipy.stats package to calculate correlations between the
+	following sets of determinants:
+	\begin{itemize}
+	\item bedtime procrastination scale (bp\_scale; a personality
+		trait) and mean time spent delaying bedtime. Use the
+		``Pearson correlation tests'' to calculate the
+		correlation.
+	\item age and mean time spent delaying bedtime. Use the ``Kendall
+		rank correlation test'' to calculate the correlation.
+	\item mean time spent delaying bedtime and daytime sleepiness. Use
+		the ``Pearson correlation test'' to calculate the
+		correlation.
+	\end{itemize}
+
+\item Use the
+\href{http://docs.scipy.org/doc/scipy/reference/stats.html}{scipy.stats}
+package to determine whether there are significant differences between
+the experimental group and the control group in terms of:
+	\begin{itemize}
+	\item the number of nights participants delayed their bedtime
+	\item the time participants spent in bed each night
+	\item the mean time participants spent delaying their bedtime
+	\end{itemize}
+Use knowledge gained in the course `Statistics' to determine
+which statistical test is appropriate: the t-test or the Wilcoxon
+rank-sum test. Explain your choice in the Data analyses section of
+your report.
+
+\item For bonus points: When interpreting the findings from the
+comparisons, adjust the significance level (alpha) to account for an
+inflation of Type I errors due to performing multiple comparisons. For
+example, you could use a Bonferroni correction (feel free to consult a
+reference work on how to adjust the significance level to counteract
+the inflation of Type I errors).
+
+\item Formulate and concisely argue for a hypothesis about which factor
+or factors (max. three) you believe would best predict delay\_time. Write
+your hypothesis down in the Data analyses section of your report. Note
+that you should theorize about why you think these factors might be good
+predictors, and not use stepwise regression to identify the strongest
+predictors.
+
+\item Use \texttt{\small statsmodels.api} to build a regression model
+that uses your three hypothesized determinants to predict delay\_time
+(see page 1 of this document). Make sure that delay\_time is not included
+in the list of predictors. Again, do not use stepwise regression, but
+use the regression model to test your hypothesis.
+
+\item Create three distinct, meaningful, well-crafted visualizations
+that either provide insight into the data, or help support your
+conclusions. This means creating three different kinds of plots (not
+three boxplots, or three scatterplots for example).
+
+\item Interpret and discuss your findings in the Discussion section of
+your report.
+
+\item Write a succinct conclusion.
+\end{itemize}
+
+Report your findings in a separate document. This document should contain
+the following sections:
+
+\begin{description}
+\item[Introduction (100 words)]
+	Describe concisely what your report is about. State the research
+	question
+	or research questions with which the report is concerned.
+
+\item[Data description and exploration (500 words)]
+	Describe the variables in your final, merged DataFrame: what does each
+	value represent?
+
+	For each variable, report appropriate descriptives (e.g., mean and
+	standard deviation, or frequencies, etc.) Mention strange values, and
+	possible outliers.
+
+	This is a good place to include one or more visualizations that help the
+	reader to better understand the data.
+
+\item[Data analyses (400 words)]
+
+	Describe the statistical analyses that you performed, and explain why
+	those were the appropriate tests for the data. Report your findings,
+	but don't discuss them yet. This is another place where visualizations can provide insight into the findings.
+
+\item[Discussion (400 words)]
+
+	Discuss your findings. Are correlations high or low? Does that make sense? Are differences significant? How robust do you think your findings are?
+
+\item[Conclusion (100 words)]
+
+	What conclusions could be drawn from your analyses? Prefer nuanced statements to bold, sweeping claims.
+
+\end{description}
+
+The final assignment should be done in the same groups as in the
+previous weeks, and must be handed in via Canvas on June 29 by
+23:59 hours. There will be two separate assignments on Canvas, one
+for your Python code and one for your report. You must submit one file
+to each assignment (one python file and one PDF document, respectively).
+
+The report should be formatted as a PDF document and must have the
+structure as described above. The word count per section is the maximum
+number of words allowed, excluding tables, captions and figures (note
+that this word count is strict). A table of contents is not necessary
+and should be left out. The report contains page numbers on each page
+in the bottom right corner. The report must have a front page containing
+the names and student numbers of the authors, the title of the report,
+the name of the course, and the date of submission.
+
+Each group should hand in only one solution. If two Python files or two
+PDF files are submitted, only the first submission will be graded.
+
+\end{document}
