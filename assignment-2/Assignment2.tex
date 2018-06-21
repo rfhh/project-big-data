@@ -22,7 +22,7 @@
 
 
 \begin{document}
-
+	
 \begin{center}
 	\textsc{\Large Project Big Data}
 	\blankline
@@ -30,194 +30,194 @@
 	\textbf{\large Assignment 2}
 \end{center}
 
-You will continue to work with the hue data files supplied for
-Assignment~1, {\small\texttt{hue\_upload.csv}} and \texttt{\small
-hue\_upload2.csv}.  The first four columns represent the \emph{row id},
-\emph{user id}, \emph{event id}, and \emph{value}. Any extra columns
-are irrelevant. For example, the first row of one file reads:
+You will continue to work with the hue data files supplied for Assignment~1, {\small\texttt{hue\_upload.csv}} and \texttt{\small hue\_upload2.csv}.  The first four columns represent the \emph{row id},	\emph{user id}, \emph{event id}, and \emph{value}. Any extra columns are irrelevant. For example, the first row of one file reads:
 
 \texttt{\small "1";"10";"lamp\_change\_29\_mei\_2015\_19\_08\_33\_984";"OFF"}
 
-As you can see, the event id encompasses both a description of
-the event (``lamp\_change'') and the date/time (May 29, 7:08:33 pm).
-The following events are considered informative:
+As you can see, the event id encompasses both a description of the event (``lamp\_change'') and the date/time (May 29, 7:08:33 pm). The following events are considered informative:
 
 \begin{center}
-\begin{tabular}{|l|l|}
-\hline
-\textbf{String}		& \textbf{Description} \\
-\hline
-\texttt{\small lamp\_change}		& Light control via app \\
-\texttt{\small nudge\_time}		& Automatic light dim time for people in experimental group \\
-\texttt{\small bedtime\_tonight}	& Intended bedtime (self-reported) \\
-\texttt{\small risetime}		& Rise time (self-reported) \\
-\texttt{\small rise\_reason}		& Reason for rising (self-reported) \\
-\texttt{\small adherence\_importance}	& Adherence (self-reported) \\
-\texttt{\small fitness}			& Fitness (self-reported) \\
-\hline
-\end{tabular}
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{String}		& \textbf{Description} \\
+		\hline
+		\texttt{\small lamp\_change}		& Light control via app \\
+		\texttt{\small nudge\_time}		& Automatic light dim time for people in experimental group \\
+		\texttt{\small bedtime\_tonight}	& Intended bedtime (self-reported) \\
+		\texttt{\small risetime}		& Rise time (self-reported) \\
+		\texttt{\small rise\_reason}		& Reason for rising (self-reported) \\
+		\texttt{\small adherence\_importance}	& Adherence (self-reported) \\
+		\texttt{\small fitness}			& Fitness (self-reported) \\
+		\hline
+	\end{tabular}
 \end{center}
 
-All self-reported values are entered around noon. Records with other
-events may be ignored.
+All self-reported values are entered around noon. Records with other events may be ignored.
 
-(60 points) The first part of this assignment is to write a Python
-function \texttt{\small read\_csv\_data} that reads the data into a
-Pandas DataFrame. The index should be a (date,user) tuple, where date
-is stored in datetime.datetime format, see the note in the `Tips' Section.
-The columns of your Pandas DataFrame should be \texttt{\small bedtime},
-\texttt{\small intended\_bedtime}, \texttt{\small rise\_time},
-\texttt{\small rise\_reason}, \texttt{\small fitness}, \texttt{\small
-adherence\_importance} and \texttt{\small in\_experimental\_group}
-(note: it is important to \emph{stick to this nomenclature}). The way
-to do this is by going through the csv data line by line, and parsing
-each line individually, following these requirements:
-
+(60 points) The first part of this assignment is to write a Python function \texttt{\small read\_csv\_data} that reads the data into a Pandas DataFrame. The index should be a (date,user) tuple, where date is stored in datetime.datetime format (see the `Tips' Section below). The columns of your Pandas DataFrame should be \texttt{\small bedtime}, \texttt{\small intended\_bedtime}, \texttt{\small rise\_time}, \texttt{\small rise\_reason}, \texttt{\small fitness}, \texttt{\small adherence\_importance} and \texttt{\small in\_experimental\_group} (note: it is important to \emph{stick to this nomenclature}). The way to do this is by going through the csv data line by line, and parsing each line individually, following these requirements:
+	
 \begin{description}
-
-\item[bedtime] should be inferred from the \texttt{\small lamp\_change}
-event. For example, from the row printed above you may infer that the
-person did not sleep before 7:08:33 pm. As you go through the lines
-in the csv file, whenever you discover new relevant information, you
-either update an existing record in the dataframe (if a record for
-that day and user exists), or you create a new record (see the `Tips'
-Section below). For example, if you encounter a line where user 10 turns
-the light on at 9 pm and another line where he turns it off at 10 pm
-(still on May 29), you update the record above to change the bedtime
-to 10 pm. If someone falls asleep past midnight, the bedtime should be
-stored in the record corresponding to the day before.
-Again, dates and times should be stored as datetime.datetime.
-
-\item[intended\_bedtime] should be filled in based on the \texttt{\small
-bedtime\_tonight} event.  Note that \texttt{\small 1030} probably
-means 10:30 in the evening. Again, dates and times should be stored
-as datetime.datetime.
-
-\item[rise\_time] The value for the column in your solution should be
-obtained from the \texttt{\small risetime} event in the csv file.
-
-\item[rise\_reason, fitness and adherence\_importance] values should
-be copied from the csv file. Note that if multiple distinct values are
-entered, the last should be assumed to be correct.
-
-\item[in\_experimental\_group] should be boolean (True/False). The
-default value is False, but should be changed to True if a \texttt{\small
-nudge\_time} event is encountered.  If a user is in the experimental
-group on one day, he is on all days.
-
+	\item[bedtime] should be inferred from the \texttt{\small lamp\_change}	event. For example, from the row printed above you may infer that the person did not sleep before 7:08:33 pm. As you go through the lines in the csv file, whenever you discover new relevant information, you either update an existing record in the dataframe (if a record for that day and user exists), or you create a new record (see the `Tips' Section below).
+	
+	For example, if you encounter a line where user 10 turns the light on at 9 pm and another line where he turns it off at 10 pm (still on May 29), you update the record above to change the bedtime to 10 pm. If someone falls asleep past midnight, the bedtime should be stored in the record corresponding to the day before. Again, dates and times should be stored as datetime.datetime.
+		
+	\item[intended\_bedtime] should be filled in based on the \texttt{\small bedtime\_tonight} event.  Note that \texttt{\small 1030} probably means 10:30 in the evening. Again, dates and times should be stored as datetime.datetime.
+	
+	\item[rise\_time] The value for the column in your solution should be obtained from the \texttt{\small risetime} event in the csv file.
+	
+	\item[rise\_reason, fitness and adherence\_importance] values should be copied from the csv file. Note that if multiple distinct values are entered, the last should be assumed to be correct.
+	
+	\item[in\_experimental\_group] should be boolean (True/False). The default value is False, but should be changed to True if a \texttt{\small nudge\_time} event is encountered.  If a user is in the experimental	group on one day, he is on all days.
 \end{description}
 
-(10+20 points) The second part of this assignment is to store the contents
-of the DataFrame into MongoDB, and to write a function that retrieves
-data from MongoDB and outputs it in a user-friendly format.
+\newpage
 
+(10+20 points) The second part of this assignment is to store the contents of the DataFrame into MongoDB, and to write a function that retrieves data from MongoDB and outputs it in a user-friendly format.
+	
 \begin{enumerate}
+	\item The data should be stored in the collection ``sleepdata'' in the database ``BigData''.  Make sure to use the same column names as specified for the DataFrame, and to define the correct primary key. See below in the Section `Tips' for some comments about the primary key. Add the extra columns ``date'', ``user'', ``sleep\_duration'' to facilitate sorting the data. Here, ``sleep\_duration'' is the difference between the risetime and the bedtime.
+	
+	\item The following is an example of how the output must be presented.
 
-\item The data should be stored in the collection ``sleepdata'' in the
-database ``BigData''.  Make sure to use the same column names as specified
-for the DataFrame, and to define the correct primary key. See below in the
-Section `Tips' for some comments about the primary key. Add the extra
-columns ``date'', ``user'', ``sleep\_duration'' to facilitate sorting
-the data. Here, ``sleep\_duration'' is the difference between the rise
-time and the bed time.
 
-\item The following is an example of how the
-output must be presented.
-
-\begin{tabular}{|r r r r r r r r|}
-\hline
-date & user & intended & actual & rise & fitn & adh & exp \\
-11-06-2015 & 34 & 22:30:00 & 00:51:28 & 07:00:00 & 07:10:00 & - & 47.0 \\
-11-06-2015 & 20 & 23:00:00 & 00:28:10 & 55.0 & 88.0 & x & \\
-\hline
-\end{tabular}
-
+	\begin{tabular}{|r r r r r r r r r r|}
+		\hline
+		date		& user	& bedtime	& intended	& risetime	& reason	& fitness	& adh	& in\_exp	& sleep\_duration	\\
+		11-06-2015	& 2		& 00:51:28	& 22:30:00	& 07:00:00	& ja		& -			& 47.0	& no		&	22351 			\\
+		11-06-2015	& 20	& 00:28:10	& 23:00:00	& 07:10:00	& nee		& 55.0		& 88.0	& yes		&	33510			\\
+		11-06-2015	& 34	& 19:54:10	& -			& -			& -			& -			& -		& yes		&       -			\\
+		\hline
+	\end{tabular}
 \end{enumerate}
 
-Another 10 points are awarded for the cleanliness of your code and
-the use of idiomatic Python. A total of 100 points can be obtained.
-The assignment should be done in groups of two students, and must be
-handed in via Blackboard on June 15 by 23:59h. Your solution should use
-the provided template (\texttt{\small solution.py}). It is \emph{crucial}
-that you do not alter the names and arguments of the existing functions,
-although adding additional functions is recommended. The template
-contains the file \texttt{\small run\_solution.py} that shows how we
-run your file. Each group should hand in only one solution. If both
-students submit a solution, only the first submission will be graded.
-Feedback will be provided to the e-mail addresses you provide in
-\texttt{\small solution.py}.
+Where sleep duration is in number of seconds. Note that, in order to determine the sleep duration of day X, it is necessary to know the risetime of day X, but the bedtime of day X - 1.
 
+Another 10 points are awarded for the cleanliness of your code and the use of idiomatic Python. A total of 100 points can be obtained. The assignment should be done in groups of two students, and must be handed in via Blackboard on June 15 by 23:59h. Your solution should use the provided template (\texttt{\small solution.py}). It is \emph{crucial} that you do not alter the names and arguments of the existing functions, although adding additional functions is recommended. The template contains the file \texttt{\small run\_solution.py} that shows how we run your file. Each group should hand in only one solution. If both students submit a solution, only the first submission will be graded. Feedback will be provided through Canvas.
+
+\section*{Frequently asked questions - Pandas}
+
+\paragraph{Do I have to use \texttt{hue\_upload.csv} or \texttt{hue\_upload2.csv}, or can I merge them and use the merged file?}
+Your program should be able to deal with multiple files separately. The argument \texttt{filenames} in the method \texttt{def read\_csv\_data(filenames)} can be a list through which you should iterate (which is a simple a for-loop through \texttt{filenames}). Do not adjust any of those two files.
+
+\paragraph{Where can I find the dates and times in the data?}
+For the \texttt{lamp\_change} event, both the date and time are in the third column. For the \texttt{rise\_time} and \texttt{bedtime\_tonight} events, the date is in the third column, but the time is in the fourth column, in a different format (e.g., 2300). Note that a value of 0 and 30 correspond to respectively 0:00 and 0:30, making parsing non-trivial. Use regular expressions to find all dates and times in the third column (see the slides from lecture 1 for their usage).
+
+\paragraph{How do I create a tuple (date, user) index?}
+See below for an example:\\\\
+\texttt{date = datetime.datetime(2016, 1, 1, 0, 0, 0)} \\
+\texttt{user\_id = 10} \\
+\texttt{index = (date,user\_id)} \\\\
+See the second tip in the `Tips' section on how to add a new document/row for an index and how to change its values.
+
+\paragraph{How do I solve the error: \texttt{KeyError: "[datetime.datetime(2015, 6, 1, 0, 0) '12'] not in index}"?}
+Your code probably includes the line:\\\\
+\texttt{insert\_if\_new(...)} \\\\
+which should be replaced with:\\\\
+\texttt{df = insert\_if\_new(...)} \\\\
+This ensures new indexes are added to your DataFrame.
+
+Another cause for this error is that you use \texttt{df.get\_value(index, ..., ...)} before you created a document for that index, meaning that you are requesting a value from your DataFrame of an index which does not exist yet. To solve this, you should consistently use the \texttt{insert\_if\_new} method to ensure that the index that you ask for, always exists in the DataFrame.
+
+\paragraph{How to solve the error: \texttt{TypeError: '>' not supported between instances of 'datetime.datetime' and 'float'}?}
+You get this error probably when you want to check for a \texttt{lamp\_change} event if a specific datetime you found, is later than the datetime that you already stored (if so, you want to update this). This idea is correct, but the reason for this error is because all default values of a new row have been set to \texttt{float('nan')}, and Python cannot compare floats with datetimes.
+
+To solve this, you have to check if the stored \texttt{bedtime} value is a float; if so, then you know you have to overwrite it with the datetime value you found anyway. If not, then it has to be a datetime value, and then you can do the comparison that you want.
+
+\paragraph{How do I get rid of the annoying `FutureWarning: set\_value is deprecated (...)'?}
+Add the line\\\\
+\texttt{import warnings}\\\\
+at the header of your code, and the line\\\\
+\texttt{warnings.simplefilter(action=\singlequote{}ignore\singlequote{}, category=FutureWarning)}\\\\
+at the start of your program.
+
+\section*{Frequently asked questions - MongoDB}
+
+\paragraph{How to solve the error: \texttt{ServerSelectionTimeoutError: localhost:27017: [WinError 10061] Kan geen verbinding maken omdat de doelcomputer de verbinding actief heeft geweigerd}?}
+For Mac, open the terminal and enter the two lines:\\\\
+\texttt{brew services start mongodb}\\
+\texttt{mongo}\\\\
+For Windows, go to \texttt{C:\textbackslash{}Program Files\textbackslash{}MongoDB\textbackslash{}Server\textbackslash{}3.6\textbackslash{}bin} and open \texttt{mongod.exe}. This program has to be open to make sure you can use MongoDB.
+
+\paragraph{How do I initialize a tuple index in MongoDB?}
+Do this by using a dictionary where you assign a value to the default key \texttt{\singlequote{}\_id\singlequote{}}. It is not needed to use the method \texttt{create\_index()}, unless you want to use another name than \texttt{\singlequote{}\_id\singlequote{}} for your index. Suppose you have an empty dictionary in the variable x, then adding a tuple index for our assignment can be done by:\\\\
+\texttt{x[\singlequote{}\_id\singlequote{}] = \{\singlequote{}date\singlequote{}:idx[0], \singlequote{}user\singlequote{}:idx[1]\}}
+
+where \texttt{idx} is a (date,id) tuple/index from the earlier created DataFrame object. All other values ('bedtime', etc.) can be added similarly. Afterwards, it is possible to add the dictionary to the database using \texttt{sleepdata.insert\_one(x)} and the entry on the \texttt{\singlequote{}\_id\singlequote{}} value is automatically recognized as the index.
+
+\paragraph{How do I remove the data in my database? It keeps on adding data everytime I run it.}
+Use \texttt{sleepdata.delete\_many(\{\})}.
+
+\paragraph{How do I have to use the \texttt{filter} and \texttt{sort} parameter in the method \texttt{def read\_mongodb(filter,sort)}?}
+Basically, you have pass these two parameters through to the \texttt{find()} and \texttt{sort()} method respectively, which you use on \texttt{sleepdata}. Basically, this boils down to using:\\\\
+\texttt{for doc in sleepdata.find(filter).sort(sort, pymongo.ASCENDING)}:\\\\
+somewhere in the code. In the for-statement, you ensure that you print the contents of the database nicely. You do not have to do special things with the filter or sort; this is all done for you if you use those two functions.
+
+The following could make the idea of the assignment more clear. If we will test your programs, we might for example use the following in your code:
+
+\texttt{df = read\_csv\_data([\singlequote{}hue\_upload.csv\singlequote{}, \singlequote{}hue\_upload2.csv\singlequote{}])}\\
+\texttt{to\_mongodb(df)}\\
+\texttt{read\_mongodb({\singlequote{}sleep\_duration\singlequote{}: \{\singlequote{}\$gt\singlequote{}: 40000\}}, \singlequote{}\_id\singlequote{})}
+
+If we use these three lines of code in your program, this means that we will test your program on being able to read in both files, where we want to have all results printed of which the sleep duration is larger than 40000 seconds.
+
+\paragraph{How do I print the output so nicely as asked in the assignment?}
+You have to do this manually using the \texttt{print()} function. Using \%s, you can print strings, and by adding a number between the \% and s, you indicate how many symbols/spaces you reserve for this string. If you use less, the remainder will be filled up with whitespaces. We will give you an example where values are printed out nicely, which should be enough for you to find out how to do so for the assignment. \\\\
+\texttt{print("\%10s\textbackslash{}t\%5s\textbackslash{}t\%8s" \% (\singlequote{}test123\singlequote{}, \singlequote{}x12\singlequote{}, \singlequote{}test1\singlequote{}))}\\
+\texttt{print("\%10s\textbackslash{}t\%5s\textbackslash{}t\%8s" \% (\singlequote{}test4567\singlequote{}, \singlequote{}x3\singlequote{}, \singlequote{}test234\singlequote{}))}\\
+\texttt{print("\%10s\textbackslash{}t\%5s\textbackslash{}t\%8s" \% (\singlequote{}test89\singlequote{}, \singlequote{}x456\singlequote{}, \singlequote{}test56\singlequote{}))}\\\\
+gives output:\\\\
+\texttt{\mbox{}~~~test123~~~~~~~~x12~~~~~~test1}\\
+\texttt{\mbox{}~~test4567~~~~~~~~~x3~~~~test234}\\
+\texttt{\mbox{}~~~~test89~~~~~~~x456~~~~~test56}\\
+
+\newpage
 
 \section*{Tips}
 
-In the assignments, there are some hurdles that are hard to jump without
-further help.
+In the assignments, there are some hurdles that are hard to jump without further help.
 
 \begin{itemize}
-\setlength\itemsep{1mm}
-
-\item It is important to use the datetime.datetime datatype instead of
-the (seemingly more appropriate) datetime.date type, as the following
-example shows. The following code \emph{does not} run as expected:
-
-% Need pastable quotes so cannot use verbatim
-\texttt{\small
-idx = (datetime.date(2015,1,1),10)\\
-df =
-df.append(pd.Series(\{\singlequote{}bedtime\singlequote{}:None,\singlequote{}intended\_bedtime\singlequote{}:None\}, name=idx))\\
-if idx in df.index:\\
-\mbox{}~~~~print(\doublequote{}surprisingly, this line does not
-run\doublequote{})
-}
-
-The reason is that pandas converts the
-datetime.date to a pandas datetime type. Since a comparison between a date
-and a datetime is always false, idx is not found in df.index. So, just stick
-to the datetime.datetime data type for now (we suspect it to be a bug in
-Pandas that will get fixed some day, but not soon enough for this course).
-The following code (the change is in the first line) \emph{does run} as
-expected:
-
-\texttt{\small idx = (datetime.datetime(2015,1,1,0,0,0),10)\\
-df =
-df.append(pd.Series(\{\singlequote{}bedtime\singlequote{}:None,\singlequote{}intended\_bedtime\singlequote{}:None\}, name=idx))\\
-if idx in df.index:\\
-\mbox{}~~~~print(\doublequote{}This gets printed (as expected)\doublequote{})
-}
-
-
-\item The next hurdle is that in some configurations, calling \texttt{\small
-df.set\_value} leads to
-the error ``ValueError: could not convert string to float''. It turns
-out to be difficult to pinpoint the exact cause of this error. As a
-workaround, we advise to use the following function:
-
-% Need pastable quotes so cannot use verbatim
-\texttt{\small
-def~insert\_if\_new(df,idx):\\
-\mbox{}~~~~if~idx~not~in~df.index:\\
-\mbox{}~~~~~~~~df~=~df.append(pd.Series(\{\singlequote{}bedtime\singlequote{}~:~float(\singlequote{}nan\singlequote{}),~\textbackslash\\
-\mbox{}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\singlequote{}intended\_bedtime\singlequote{}~:~float(\singlequote{}nan\singlequote{}),~\textbackslash\\
-\mbox{}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\singlequote{}risetime\singlequote{}~:~float(\singlequote{}nan\singlequote{}),~\textbackslash\\
-\mbox{}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\singlequote{}rise\_reason\singlequote{}~:~float(\singlequote{}nan\singlequote{}),~\textbackslash\\
-\mbox{}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\singlequote{}fitness\singlequote{}~:~float(\singlequote{}nan\singlequote{}),~\textbackslash\\
-\mbox{}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\singlequote{}adherence\_importance\singlequote{}~:~float(\singlequote{}nan\singlequote{}),~\textbackslash\\
-\mbox{}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\singlequote{}in\_experimental\_group\singlequote{}~:~False\},~\textbackslash\\
-\mbox{}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~name=idx))\\
-\mbox{}~~~~return~df
-}
-
-Mixing float with \texttt{\small nan} ensures that Pandas does not
-infer incorrect datatypes. Call this function to add a row, and use
-\texttt{\small set\_value} to modify the dataframe.
-
-\item The third hurdle is setting the primary key in mongodb. As mongodb
-does not support tuples (just dicts and lists), the primary key has to be
-converted from a tuple to a dict (with strings 'date' and 'user' as keys).
-
-\item Good luck! Oh, for those in need, there is an official
-\href{https://github.com/pandas-dev/pandas/blob/master/doc/cheatsheet/Pandas\_Cheat\_Sheet.pdf}{Pandas
-cheat sheet}.
+	\setlength\itemsep{1mm}
+	
+	\item It is important to use the datetime.datetime datatype instead of the (seemingly more appropriate) datetime.date type, as the following example shows. The following code \emph{does not} run as expected:
+	
+	% Need pastable quotes so cannot use verbatim
+	\texttt{\small
+		idx = (datetime.date(2015,1,1),10)\\
+		df =
+		df.append(pd.Series(\{\singlequote{}bedtime\singlequote{}:None,\singlequote{}intended\_bedtime\singlequote{}:None\}, name=idx))\\
+		if idx in df.index:\\
+		\mbox{}~~~~print(\doublequote{}surprisingly, this line does not
+		run\doublequote{})
+	}
+	
+	The reason is that pandas converts the datetime.date to a pandas datetime type. Since a comparison between a date and a datetime is always false, idx is not found in df.index. So, just stick to the datetime.datetime data type for now (we suspect it to be a bug in Pandas that will get fixed some day, but not soon enough for this course). The following code (the change is in the first line) \emph{does run} as expected:
+		
+	\texttt{\small idx = (datetime.datetime(2015,1,1,0,0,0),10)\\
+		df =
+		df.append(pd.Series(\{\singlequote{}bedtime\singlequote{}:None,\singlequote{}intended\_bedtime\singlequote{}:None\}, name=idx))\\
+		if idx in df.index:\\
+		\mbox{}~~~~print(\doublequote{}This gets printed (as expected)\doublequote{})
+	}
+	
+	\item The next hurdle is that in some configurations, calling \texttt{\small df.set\_value} leads to the error ``ValueError: could not convert string to float''. It turns out to be difficult to pinpoint the exact cause of this error. As a workaround, we advise to use the following function:
+	
+	% Need pastable quotes so cannot use verbatim
+	\texttt{\small
+		def~insert\_if\_new(df,idx):\\
+		\mbox{}~~~~if~idx~not~in~df.index:\\
+		\mbox{}~~~~~~~~df~=~df.append(pd.Series(\{\singlequote{}bedtime\singlequote{}~:~float(\singlequote{}nan\singlequote{}), \singlequote{}intended\_bedtime\singlequote{}~:~float(\singlequote{}nan\singlequote{}),~\textbackslash\\
+		\mbox{}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\singlequote{}risetime\singlequote{}~:~float(\singlequote{}nan\singlequote{}), \singlequote{}rise\_reason\singlequote{}~:~float(\singlequote{}nan\singlequote{}),~\textbackslash\\
+		\mbox{}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\singlequote{}fitness\singlequote{}~:~float(\singlequote{}nan\singlequote{}), \singlequote{}adherence\_importance\singlequote{}~:~float(\singlequote{}nan\singlequote{}),~\textbackslash\\
+		\mbox{}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\singlequote{}in\_experimental\_group\singlequote{}~:~False\}, name=idx))\\
+		\mbox{}~~~~return~df
+	}
+	
+	Mixing float with \texttt{\small nan} ensures that Pandas does not infer incorrect datatypes. Call this function to add a row, and use \texttt{\small set\_value} to modify the dataframe.
+	
+	\item The third hurdle is setting the primary key in mongodb. As mongodb does not support tuples (just dicts and lists), the primary key has to be converted from a tuple to a dict (with strings 'date' and 'user' as keys).
+		
+	\item Good luck! Oh, for those in need, there is an official \href{https://github.com/pandas-dev/pandas/blob/master/doc/cheatsheet/Pandas\_Cheat\_Sheet.pdf}{Pandas cheat sheet}.
 \end{itemize}
 
 \end{document}
